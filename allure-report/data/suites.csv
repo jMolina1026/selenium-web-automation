@@ -1,0 +1,2 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Thu Mar 14 09:59:40 PDT 2024","Thu Mar 14 09:59:46 PDT 2024","5942","Surefire suite","Surefire test","sampleMavenSeleniumProject.Test1","sampleMavenSeleniumProject.Test1","setUp","setUp","This is the description"
