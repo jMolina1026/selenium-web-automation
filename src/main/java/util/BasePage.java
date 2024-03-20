@@ -2,15 +2,23 @@ package util;
 
 import java.time.Duration;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+//import org.testng.asserts.SoftAssert;
+
+import io.qameta.allure.Attachment;
 
 public abstract class BasePage {
     protected final WebDriver driver;
     protected WebDriverWait wait;
-//    protected SoftAssert softAssertion = new SoftAssertion();
+//    protected SoftAssert softAssertionAssert = new SoftAssert();
     protected Actions action;
     
 	public BasePage(WebDriver driver){
@@ -20,5 +28,20 @@ public abstract class BasePage {
         //This initElements method will create all WebElements
         PageFactory.initElements(driver, this);
         wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+    }
+	
+    @Attachment(value = "Page screenshot", type = "image/png")
+    public byte[] saveScreenshot(byte[] screenShot) {
+        return screenShot;
+    }
+    
+    public void takeScreenshot() {
+        final byte[] screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+        saveScreenshot(screenShot);
+    }
+    
+    public String getElementText(WebElement element) {
+//    	return driver.findElement(By.cssSelector(element)).getText();
+    	return wait.until(ExpectedConditions.visibilityOf(element)).getText();
     }
 }

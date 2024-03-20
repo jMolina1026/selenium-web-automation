@@ -1,34 +1,29 @@
 package sampleMavenSeleniumProject;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-//import org.openqa.selenium.edge.EdgeDriver;
-//import org.openqa.selenium.firefox.FirefoxDriver;
-//import org.openqa.selenium.safari.SafariDriver;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
 import pages.LoginPage;
+import util.SeleniumWebDriver;
 
-public class LoginPageTest {
-	WebDriver driver = new ChromeDriver();
-//	WebDriver driver = new FirefoxDriver();
-//	WebDriver driver = new SafariDriver();
-//	WebDriver driver = new EdgeDriver();
-	
-	LoginPage loginPage = new LoginPage(driver);
-	
-	
+public class LoginPageTest extends SeleniumWebDriver {	
 	@Description ("Login to the Site")
 	@Test (priority = 1)
-	public void pageLoginTest() throws InterruptedException {
-		System.out.println("hello");
-		driver.get("https://www.saucedemo.com/");
-		loginPage.enterUserName();
-		loginPage.enterPassword();
+	public void loginTest() throws InterruptedException {
+		loginPage.login(userName, passWord);
+		loginPage.takeScreenshot();
+		System.out.println("The test is now done");
+		Assert.assertEquals(loginPage.getHeaderLogoText(), "Swag Labs_");
+		Thread.sleep(3000);
+	}
+	
+	@Description ("Attempt to login with an invalid username")
+	@Test (priority = 2)
+	public void loginWithWrongUsername() throws InterruptedException {
+		loginPage.login("WrongUserName", passWord);
 		loginPage.takeScreenshot();
 		System.out.println("The test is now done");
 		Thread.sleep(3000);
-		driver.quit();
 	}
 }
