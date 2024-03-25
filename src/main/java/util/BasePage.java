@@ -1,6 +1,7 @@
 package util;
 
 import java.time.Duration;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
@@ -41,7 +42,10 @@ public abstract class BasePage {
     }
     
     public String getElementText(WebElement element) {
-//    	return driver.findElement(By.cssSelector(element)).getText();
     	return wait.until(ExpectedConditions.visibilityOf(element)).getText();
+    }
+    
+    public Boolean isElementPresent(WebElement element) {
+    	return (element.isDisplayed());
     }
 }

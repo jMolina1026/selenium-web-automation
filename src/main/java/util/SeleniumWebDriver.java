@@ -7,16 +7,18 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-//import org.testng.asserts.SoftAssert;
+import org.testng.asserts.SoftAssert;
+import org.testng.Assert;
 
-import pages.LoginPage;
+import pages.LoginPage.LoginPage;
 
 public abstract class SeleniumWebDriver {
 	public WebDriver driver;
     protected LoginPage loginPage;
     protected PropertyReader propertyReader = new PropertyReader(PropertyKey.CONFIG);
     protected String browserType;
-//    protected SoftAssert softAssertion = new SoftAssert();
+    protected SoftAssert softAssert = new SoftAssert();
+    public Assert hardAssert;
 
     public String userName = propertyReader.getValue(PropertyKey.USERNAME);
     public String passWord = propertyReader.getValue(PropertyKey.PASSWORD);
@@ -56,8 +58,10 @@ public abstract class SeleniumWebDriver {
     }
 
     @AfterMethod
-    public void afterMethod() {
-        if (driver != null) {
+    public void afterMethod() throws InterruptedException {
+    	Thread.sleep(3000);
+		System.out.println("The test is now done");
+    	if (driver != null) {
             driver.quit();
         }
     }
