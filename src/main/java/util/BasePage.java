@@ -12,14 +12,12 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-//import org.testng.asserts.SoftAssert;
 
 import io.qameta.allure.Attachment;
 
 public abstract class BasePage {
     protected final WebDriver driver;
     protected WebDriverWait wait;
-//    protected SoftAssert softAssertionAssert = new SoftAssert();
     protected Actions action;
     
 	public BasePage(WebDriver driver){
@@ -45,7 +43,7 @@ public abstract class BasePage {
     	return wait.until(ExpectedConditions.visibilityOf(element)).getText();
     }
     
-    public Boolean isElementPresent(WebElement element) {
+    public boolean isElementPresent(WebElement element) {
     	return (element.isDisplayed());
     }
 }
