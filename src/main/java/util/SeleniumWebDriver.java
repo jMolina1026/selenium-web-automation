@@ -1,6 +1,5 @@
 package util;
 
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -8,7 +7,6 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.asserts.SoftAssert;
-import org.testng.Assert;
 
 import pages.LoginPage.LoginPage;
 
@@ -18,7 +16,6 @@ public abstract class SeleniumWebDriver {
     protected PropertyReader propertyReader = new PropertyReader(PropertyKey.CONFIG);
     protected String browserType;
     protected SoftAssert softAssert = new SoftAssert();
-    public Assert hardAssert;
 
     public String userName = propertyReader.getValue(PropertyKey.USERNAME);
     public String passWord = propertyReader.getValue(PropertyKey.PASSWORD);

@@ -3,7 +3,7 @@
 <suite name="SwagLabs - Selenium">
   <test thread-count="1" name="SwagLabs UI">
     <classes>
-      <class name="sampleMavenSeleniumProject.LoginPageTest"/>
+      <class name="loginPageTests.LoginPageTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

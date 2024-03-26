@@ -75,7 +75,7 @@ public class LoginPage extends BasePage {
      * @param userName - account username
      * @param password - account password
      */
-    @Step ("Login to the site")
+//    @Step ("Login to the site")
     public void login(String userName, String password) {
     	enterUserName(userName);
     	enterPassword(password);
