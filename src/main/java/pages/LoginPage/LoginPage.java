@@ -110,7 +110,7 @@ public class LoginPage extends BasePage {
      * Returns true or false depending on if the Login Logo is present
      * @return - true if Login Logo is present
      */
-    public Boolean isLoginLogoPresent() {
+    public boolean isLoginLogoPresent() {
     	return isElementPresent(loginLogo);
     }
     
@@ -118,7 +118,7 @@ public class LoginPage extends BasePage {
      * Returns true or false depending on if the Username field is present
      * @return - true if Username Field is present
      */
-    public Boolean isUsernameFieldPresent() {
+    public boolean isUsernameFieldPresent() {
     	return isElementPresent(emailField);
     }
     
@@ -126,7 +126,7 @@ public class LoginPage extends BasePage {
      * Returns true or false depending on if the Password field is present
      * @return - true if Password Field is present
      */
-    public Boolean isPasswordFieldPresent() {
+    public boolean isPasswordFieldPresent() {
     	return isElementPresent(passwordField);
     }
     
@@ -134,7 +134,7 @@ public class LoginPage extends BasePage {
      * Returns true or false depending on if the Username Credentials are present
      * @return - true if Username Crendentials are present
      */
-    public Boolean isLoginCredentialsAreaPresent() {
+    public boolean isLoginCredentialsAreaPresent() {
     	return isElementPresent(loginCredentials);
     }
     
@@ -142,7 +142,7 @@ public class LoginPage extends BasePage {
      * Returns true or false depending on if the Password Credential is present
      * @return - true if Login Password area is present
      */
-    public Boolean isLoginPasswordAreaPresent() {
+    public boolean isLoginPasswordAreaPresent() {
     	return isElementPresent(loginPassword);
     }
     
