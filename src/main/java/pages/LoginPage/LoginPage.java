@@ -94,7 +94,7 @@ public class LoginPage extends BasePage {
      * Returns true or false depending on if the Error Message Box is present
      * @return - true if message box is present
      */
-    public Boolean isErrorMessageBoxPresent() {
+    public boolean isErrorMessageBoxPresent() {
     	return isElementPresent(errorMessageBox);
     }
     
