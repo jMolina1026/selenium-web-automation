@@ -2,13 +2,11 @@ package pages.LoginPage;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import io.qameta.allure.Attachment;
-import io.qameta.allure.Description;
 import io.qameta.allure.Step;
 import util.BasePage;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {

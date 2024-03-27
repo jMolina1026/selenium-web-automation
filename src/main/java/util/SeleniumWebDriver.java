@@ -29,7 +29,7 @@ public abstract class SeleniumWebDriver {
 
 
 
-    @BeforeMethod
+    @BeforeMethod (alwaysRun = true)
     public void init(){
         switch(propertyReader.getValue(PropertyKey.BROWSER_DRIVER)){
             case "fireFoxDriver":
@@ -72,7 +72,7 @@ public abstract class SeleniumWebDriver {
         saveScreenshot(screenShot);
     }
 
-    @AfterMethod
+    @AfterMethod (alwaysRun = true)
     public void afterMethod() throws InterruptedException {
     	takeScreenshot();
     	Thread.sleep(3000);

@@ -43,7 +43,7 @@ public class LoginPageTest extends SeleniumWebDriver implements LoginPageFinalVa
 		softAssert.assertAll();
 	}
 
-	@Test (priority = 4, description = "Invalid Password", groups = {"loginPageTests"})
+	@Test (priority = 4, description = "Invalid Password", groups = {"Tests"})
 	@Story ("Login Actions")
 	@Description("Attempts to Login with an invalid password")
 	public void loginWithWrongPasswordTest() {
