@@ -4,6 +4,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.AfterMethod;
@@ -20,31 +21,39 @@ public abstract class SeleniumWebDriver {
 	public WebDriver driver;
     protected LoginPage loginPage;
     protected PropertyReader propertyReader = new PropertyReader(PropertyKey.CONFIG);
+	protected ChromeOptions chromeOptions = new ChromeOptions();
     protected String browserType;
     protected SoftAssert softAssert;
     public Assert hardAssert;
+    
+	String browserDriver = System.getProperty(propertyReader.getValue(PropertyKey.DRIVER_NAME));
+	String runType = System.getProperty(propertyReader.getValue(PropertyKey.HEADED_OR_HEADLESS));
 
-    public String userName = propertyReader.getValue(PropertyKey.USERNAME);
-    public String passWord = propertyReader.getValue(PropertyKey.PASSWORD);
-
-
+    public String userName = System.getProperty(propertyReader.getValue(PropertyKey.USERNAME));
+    public String passWord = System.getProperty(propertyReader.getValue(PropertyKey.PASSWORD));
 
     @BeforeMethod (alwaysRun = true)
-    public void init(){
-        switch(propertyReader.getValue(PropertyKey.BROWSER_DRIVER)){
+    public void init() throws Exception{
+        switch(browserDriver){
             case "fireFoxDriver":
                 driver = new FirefoxDriver();
                 browserType = "fireFox";
                 break;
             case "chromeDriver":
-                driver = new ChromeDriver();
+            	if (runType.equals(propertyReader.getValue(PropertyKey.RUN_HEADELESS_MODE))) {
+                	chromeOptions.addArguments(runType);
+                    driver = new ChromeDriver(chromeOptions);
+            	} else if (runType.equals(propertyReader.getValue(PropertyKey.RUN_HEADED_MODE))){
+                	driver = new ChromeDriver();
+            	}
                 browserType = "chrome";
                 break;
             case "safariDriver":
                 driver = new SafariDriver();
                 browserType = "safari";
                 break;
-
+			default:
+				throw new Exception("None of the programmed or available drivers are being used, check that -Dbrowser has the correct value assigned");
         }
         
         loginPage = new LoginPage(driver);
@@ -52,13 +61,6 @@ public abstract class SeleniumWebDriver {
 
         driver.get(propertyReader.getValue(PropertyKey.URL));
         driver.manage().window().maximize();
-
-//        if (browserType.equalsIgnoreCase("chrome")) {
-//            driver.manage().window().setSize(new Dimension(1680, 1050));
-//        } else {
-//            driver.manage().window().maximize();
-//        }
-
 
     }
     

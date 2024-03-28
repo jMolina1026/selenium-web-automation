@@ -7,7 +7,10 @@ public class PropertyKey {
      */
     //***** Global Settings *****\\
     public static final String CONFIG = "config.properties";
-    public static final String BROWSER_DRIVER = "browserDriver";
+    public static final String DRIVER_NAME = "driverName";
+    public static final String HEADED_OR_HEADLESS = "headedOrHeadless";
+    public static final String RUN_HEADELESS_MODE = "runHeadlessMode";
+    public static final String RUN_HEADED_MODE = "runHeadedMode";
 
     //***** Log in settings *****\\
     public static final String URL = "url";
