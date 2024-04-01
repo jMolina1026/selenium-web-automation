@@ -47,7 +47,7 @@ public class LoginPage extends BasePage {
      */
     @Step ("Enter your Username")
     public void enterUserName(String userName) {
-    	wait.until(ExpectedConditions.visibilityOf(emailField)).sendKeys(userName);
+    	typeTextIntoTheInputField(emailField, userName);
     }
     
     /**
@@ -56,7 +56,7 @@ public class LoginPage extends BasePage {
      */
     @Step ("Enter your password")
     public void enterPassword(String password) {
-    	wait.until(ExpectedConditions.visibilityOf(passwordField)).sendKeys(password);
+    	typeTextIntoTheInputField(passwordField, password);
     }
     
     /**
@@ -64,7 +64,7 @@ public class LoginPage extends BasePage {
      */
     @Step ("Click the Login button")
     public void clickLoginButton() {
-    	wait.until(ExpectedConditions.visibilityOf(loginButton)).click();
+    	clickTheElement(loginButton);
     }
     
     /**

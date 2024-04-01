@@ -11,6 +11,7 @@ public class PropertyKey {
     public static final String HEADED_OR_HEADLESS = "headedOrHeadless";
     public static final String RUN_HEADELESS_MODE = "runHeadlessMode";
     public static final String RUN_HEADED_MODE = "runHeadedMode";
+    public static final String WINDOW_SIZE = "windowSize";
 
     //***** Log in settings *****\\
     public static final String URL = "url";

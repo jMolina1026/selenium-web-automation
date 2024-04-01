@@ -67,7 +67,7 @@ public class LoginPageTest extends SeleniumWebDriver implements LoginPageFinalVa
 
 	@Test (priority = 6, description = "Verify Required Password", groups = {"Regression"})
 	@Story ("Verify the login Page")
-	@Description("Verifies if a password has been added to the username field")
+	@Description("Verifies if a password has been added to the password field")
 	public void loginWithNoPasswordEntered() {
 		loginPage.login(userName, "");
 		loginPage.takeScreenshot();

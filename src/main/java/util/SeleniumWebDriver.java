@@ -1,5 +1,7 @@
 package util;
 
+//import org.openqa.selenium.Dimension;
+
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -26,11 +28,21 @@ public abstract class SeleniumWebDriver {
     protected SoftAssert softAssert;
     public Assert hardAssert;
     
-	String browserDriver = System.getProperty(propertyReader.getValue(PropertyKey.DRIVER_NAME));
-	String runType = System.getProperty(propertyReader.getValue(PropertyKey.HEADED_OR_HEADLESS));
+//	String browserDriver = System.getProperty("driverName");
+//	String runType = System.getProperty("headedOrHeadless");
+//
+//    public String userName = System.getProperty("userName");
+//    public String passWord = System.getProperty("passWord");
+    
+    public String getPropertyKey(String key) {
+    	return propertyReader.getValue(key);
+    }
+    
+	String browserDriver = System.getProperty(getPropertyKey(PropertyKey.DRIVER_NAME));
+	String runType = System.getProperty(getPropertyKey(PropertyKey.HEADED_OR_HEADLESS));
 
-    public String userName = System.getProperty(propertyReader.getValue(PropertyKey.USERNAME));
-    public String passWord = System.getProperty(propertyReader.getValue(PropertyKey.PASSWORD));
+    public String userName = System.getProperty(getPropertyKey(PropertyKey.USERNAME));
+    public String passWord = System.getProperty(getPropertyKey(PropertyKey.PASSWORD));
 
     @BeforeMethod (alwaysRun = true)
     public void init() throws Exception{
@@ -40,11 +52,13 @@ public abstract class SeleniumWebDriver {
                 browserType = "fireFox";
                 break;
             case "chromeDriver":
-            	if (runType.equals(propertyReader.getValue(PropertyKey.RUN_HEADELESS_MODE))) {
+            	chromeOptions.addArguments(getPropertyKey(PropertyKey.WINDOW_SIZE));
+//            	chromeOptions.addArguments("window-size=1680,1050");
+            	if (runType.equals(getPropertyKey(PropertyKey.RUN_HEADELESS_MODE))) {
                 	chromeOptions.addArguments(runType);
                     driver = new ChromeDriver(chromeOptions);
-            	} else if (runType.equals(propertyReader.getValue(PropertyKey.RUN_HEADED_MODE))){
-                	driver = new ChromeDriver();
+            	} else if (runType.equals(getPropertyKey(PropertyKey.RUN_HEADED_MODE))){
+            		driver = new ChromeDriver(chromeOptions);
             	}
                 browserType = "chrome";
                 break;
@@ -59,8 +73,14 @@ public abstract class SeleniumWebDriver {
         loginPage = new LoginPage(driver);
         softAssert = new SoftAssert();
 
-        driver.get(propertyReader.getValue(PropertyKey.URL));
-        driver.manage().window().maximize();
+        driver.get(getPropertyKey(PropertyKey.URL));
+
+//        driver.manage().window().maximize();
+//        if (browserType.equalsIgnoreCase("chrome")) {
+//            driver.manage().window().setSize(new Dimension(1680,1050));;
+//        } else {
+//            driver.manage().window().maximize();
+//        }
 
     }
     
