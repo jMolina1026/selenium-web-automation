@@ -2,3 +2,4 @@ target/
 .settings/
 allure-report/
 test-output/
+allure-results/
