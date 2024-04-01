@@ -12,14 +12,12 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-//import org.testng.asserts.SoftAssert;
 
 import io.qameta.allure.Attachment;
 
 public abstract class BasePage {
     protected final WebDriver driver;
     protected WebDriverWait wait;
-//    protected SoftAssert softAssertionAssert = new SoftAssert();
     protected Actions action;
     
 	public BasePage(WebDriver driver){
@@ -36,16 +34,57 @@ public abstract class BasePage {
         return screenShot;
     }
     
+    /**
+     * Takes a screenshot of the page under test
+     */
     public void takeScreenshot() {
         final byte[] screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
         saveScreenshot(screenShot);
     }
     
-    public String getElementText(WebElement element) {
-    	return wait.until(ExpectedConditions.visibilityOf(element)).getText();
+    /**
+     * Waits for the element to appear on the page
+     * @param element - locator used to identify the element.
+     */
+    public void waitExplicitlyForElement(WebElement element) {
+    	wait.until(ExpectedConditions.visibilityOf(element));
     }
     
-    public Boolean isElementPresent(WebElement element) {
-    	return (element.isDisplayed());
+    /**
+     * Gets and stores the Elements text if there is one associated.
+     * @param element - locator used to identify the element.
+     * @return - The elements text
+     */
+    public String getElementText(WebElement element) {
+    	waitExplicitlyForElement(element);
+    	return element.getText();
+    }
+    
+    /**
+     * Displays if the element is present or not
+     * @param element - locator used to identify the element.
+     * @return - the element is present on the page
+     */
+    public boolean isElementPresent(WebElement element) {
+    	return element.isDisplayed();
+    }
+    
+    /**
+     * This method will type text into an existing input field
+     * @param element - locator used to identify the element.
+     * @param text - String to type into an input field
+     */
+    public void typeTextIntoTheInputField(WebElement element, String text) {
+    	waitExplicitlyForElement(element);
+    	element.sendKeys(text);
+    }
+    
+    /**
+     * The method will click the element in question
+     * @param element - locator used to identify the element.
+     */
+    public void clickTheElement(WebElement element) {
+    	waitExplicitlyForElement(element);
+    	element.click();
     }
 }

@@ -1,21 +1,18 @@
 package pages.LoginPage;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import util.BasePage;
 
-import java.util.List;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
 	public LoginPage(WebDriver driver) {
 		super(driver);
 	}
-	
 
 	/**
 	 * Login Page Element Locators
@@ -50,7 +47,7 @@ public class LoginPage extends BasePage {
      */
     @Step ("Enter your Username")
     public void enterUserName(String userName) {
-    	wait.until(ExpectedConditions.visibilityOf(emailField)).sendKeys(userName);
+    	typeTextIntoTheInputField(emailField, userName);
     }
     
     /**
@@ -59,7 +56,7 @@ public class LoginPage extends BasePage {
      */
     @Step ("Enter your password")
     public void enterPassword(String password) {
-    	wait.until(ExpectedConditions.visibilityOf(passwordField)).sendKeys(password);
+    	typeTextIntoTheInputField(passwordField, password);
     }
     
     /**
@@ -67,7 +64,7 @@ public class LoginPage extends BasePage {
      */
     @Step ("Click the Login button")
     public void clickLoginButton() {
-    	wait.until(ExpectedConditions.visibilityOf(loginButton)).click();
+    	clickTheElement(loginButton);
     }
     
     /**
@@ -75,7 +72,7 @@ public class LoginPage extends BasePage {
      * @param userName - account username
      * @param password - account password
      */
-    @Step ("Login to the site")
+	@Step("Login into the Site")
     public void login(String userName, String password) {
     	enterUserName(userName);
     	enterPassword(password);
@@ -86,6 +83,8 @@ public class LoginPage extends BasePage {
      * Returns text from the logo
      * @return - header logo text
      */
+	@Step("Get the header logo text")
+	@Attachment
     public String getHeaderLogoText() {
     	return getElementText(headerLogo);
     }
@@ -94,7 +93,9 @@ public class LoginPage extends BasePage {
      * Returns true or false depending on if the Error Message Box is present
      * @return - true if message box is present
      */
-    public Boolean isErrorMessageBoxPresent() {
+	@Step("Is the error message box present?")
+	@Attachment
+    public boolean isErrorMessageBoxPresent() {
     	return isElementPresent(errorMessageBox);
     }
     
@@ -102,47 +103,59 @@ public class LoginPage extends BasePage {
      * When the wrong username or password is entered a message error box appears.
      * @return - error message box text
      */
+	@Step("Get the error message box text")
+	@Attachment
     public String getErrorMessageBoxText() {
     	return getElementText(errorMessageBox);
     }
     
     /**
-     * Returns true or false depending on if the Login Logo is present
+     * The login Logo should be at the top of the login page
      * @return - true if Login Logo is present
      */
-    public Boolean isLoginLogoPresent() {
+	@Step ("Is the Login Logo Present?")
+	@Attachment
+    public boolean isLoginLogoPresent() {
     	return isElementPresent(loginLogo);
     }
     
     /**
-     * Returns true or false depending on if the Username field is present
+     * The username field should be the first prompt in the login fields
      * @return - true if Username Field is present
      */
-    public Boolean isUsernameFieldPresent() {
+	@Step ("Is the Username field Present?")
+	@Attachment
+    public boolean isUsernameFieldPresent() {
     	return isElementPresent(emailField);
     }
     
     /**
-     * Returns true or false depending on if the Password field is present
+     * The Password field should be the first prompt in the login fields
      * @return - true if Password Field is present
      */
-    public Boolean isPasswordFieldPresent() {
+	@Step ("Is the Password field Present?")
+	@Attachment
+    public boolean isPasswordFieldPresent() {
     	return isElementPresent(passwordField);
     }
     
     /**
-     * Returns true or false depending on if the Username Credentials are present
+     * The login username credential area displays mulitiple valid usernames
      * @return - true if Username Crendentials are present
      */
-    public Boolean isLoginCredentialsAreaPresent() {
+	@Step ("Are the Login username credentials Present?")
+	@Attachment
+    public boolean isLoginCredentialsAreaPresent() {
     	return isElementPresent(loginCredentials);
     }
     
     /**
-     * Returns true or false depending on if the Password Credential is present
+     * The login password area displays a valid password
      * @return - true if Login Password area is present
      */
-    public Boolean isLoginPasswordAreaPresent() {
+	@Step ("Is the Password area Present?")
+	@Attachment
+    public boolean isLoginPasswordAreaPresent() {
     	return isElementPresent(loginPassword);
     }
     
