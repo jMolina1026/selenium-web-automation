@@ -18,7 +18,7 @@ public class HeaderPageTest extends SeleniumWebDriver {
         loginPage.login(userName,passWord);
     }
 	
-	@Test(priority = 1, description = "Verify the Primary Header", groups = {"Sanity", "headerSanity"})
+	@Test(priority = 1, description = "Verify the Primary Header", groups = {"All", "Sanity", "headerSanity"})
 	@Story ("Verify the header bar")
 	@Description ("The header bar contains all the required elements")
 	public void verifyHeaderBarTest() {
