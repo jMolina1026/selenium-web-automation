@@ -11,7 +11,7 @@ import util.SeleniumWebDriver;
 @Feature ("We need to test the Login Page")
 public class LoginPageTest extends SeleniumWebDriver implements LoginPageFinalVariables{
 
-	@Test(priority = 1, description = "Verfiy the Login Page", groups = {"Sanity"})
+	@Test(priority = 1, description = "Verfiy the Login Page", groups = {"All", "Sanity", "loginSanity"})
 	@Story ("Verify the login Page")
 	@Description ("The login password area displays a valid password")
 	public void verifyLoginPageTest() {
@@ -23,7 +23,7 @@ public class LoginPageTest extends SeleniumWebDriver implements LoginPageFinalVa
 		softAssert.assertAll();
 	}
 
-	@Test (priority = 2, description = "Login into the Site", groups = {"Regression"})
+	@Test (priority = 2, description = "Login into the Site", groups = {"All", "Regression", "loginRegression"})
 	@Story ("Login Actions")
 	@Description ("Performs the action to Login with valid credentials")
 	public void loginTest() {
@@ -32,7 +32,7 @@ public class LoginPageTest extends SeleniumWebDriver implements LoginPageFinalVa
 		softAssert.assertAll();
 	}
 
-	@Test (priority = 3, description = "Invalid Username", groups = {"Regression"})
+	@Test (priority = 3, description = "Invalid Username", groups = {"All", "Regression", "loginRegression"})
 	@Story ("Login Actions")
 	@Description("Attempts to Login with an invalid username")
 	public void loginWithWrongUsernameTest() {
@@ -43,7 +43,7 @@ public class LoginPageTest extends SeleniumWebDriver implements LoginPageFinalVa
 		softAssert.assertAll();
 	}
 
-	@Test (priority = 4, description = "Invalid Password", groups = {"Regression"})
+	@Test (priority = 4, description = "Invalid Password", groups = {"All", "Regression", "loginRegression"})
 	@Story ("Login Actions")
 	@Description("Attempts to Login with an invalid password")
 	public void loginWithWrongPasswordTest() {
@@ -54,7 +54,7 @@ public class LoginPageTest extends SeleniumWebDriver implements LoginPageFinalVa
 		softAssert.assertAll();
 	}
 
-	@Test (priority = 5, description = "Verify Required Username", groups = {"Regression"})
+	@Test (priority = 5, description = "Verify Required Username", groups = {"All", "Regression", "loginRegression"})
 	@Story ("Verify the login Page")
 	@Description("Verifies if a username has been added to the username field")
 	public void loginWithNoUsernameEntered() {
@@ -65,7 +65,7 @@ public class LoginPageTest extends SeleniumWebDriver implements LoginPageFinalVa
 		softAssert.assertAll();
 	}
 
-	@Test (priority = 6, description = "Verify Required Password", groups = {"Regression"})
+	@Test (priority = 6, description = "Verify Required Password", groups = {"All", "Regression", "loginRegression"})
 	@Story ("Verify the login Page")
 	@Description("Verifies if a password has been added to the password field")
 	public void loginWithNoPasswordEntered() {

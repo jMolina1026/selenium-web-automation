@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -43,11 +44,32 @@ public abstract class BasePage {
     }
     
     /**
+     * Get the current page url
+     * @return - current page url
+     */
+    public String getCurrentPageUrl() {
+    	return driver.getCurrentUrl();
+    }
+    
+    /**
      * Waits for the element to appear on the page
      * @param element - locator used to identify the element.
      */
     public void waitExplicitlyForElement(WebElement element) {
     	wait.until(ExpectedConditions.visibilityOf(element));
+    }
+    
+    /**
+     * Waits for the element to be invisible on the page
+     * @param element - locator used to identify the element.
+     */
+    public void waitExplicitlyForInvisibleElement(WebElement element) {
+    	wait.until(ExpectedConditions.invisibilityOf(element));
+    }
+    
+    public boolean doesElementExist(List<WebElement> elementList) {
+//    	return driver.findElements(By.cssSelector("")).size() > 0;
+    	return elementList.size() > 0;
     }
     
     /**
@@ -63,9 +85,20 @@ public abstract class BasePage {
     /**
      * Displays if the element is present or not
      * @param element - locator used to identify the element.
-     * @return - the element is present on the page
+     * @return - the element is present on the page, TRUE
      */
     public boolean isElementPresent(WebElement element) {
+    	waitExplicitlyForElement(element);
+    	return element.isDisplayed();
+    }
+    
+    /**
+     * Displays if the element is present or not
+     * @param element - locator used to identify the element.
+     * @return - the element is Not present on the page, FALSE
+     */
+    public boolean isElementNotPresent(WebElement element) {
+    	waitExplicitlyForInvisibleElement(element);
     	return element.isDisplayed();
     }
     
