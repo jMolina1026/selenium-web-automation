@@ -4,11 +4,13 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import pages.hamburgerMenuPage.HamburgerMenuPage;
 import pages.hamburgerMenuPage.HamburgerMenuPageFinalVariables;
 import util.SeleniumWebDriver;
 
+@Feature ("Swag Labs Hamburger Menu")
 public class HamburgerMenuTest extends SeleniumWebDriver implements HamburgerMenuPageFinalVariables{
 	HamburgerMenuPage hamburgerMenuPage;
 	@BeforeMethod (alwaysRun = true)
@@ -39,7 +41,7 @@ public class HamburgerMenuTest extends SeleniumWebDriver implements HamburgerMen
 	}
 	
 	@Test(priority = 2, description = "Verify that the Hamburger Menu Option 'All Items' takes the user to the home page", groups = {"All", "Regression", "burgerMenuRegression"})
-	@Story ("Verify the Hamburger Menu - 'All Items'")
+	@Story ("Verify the Hamburger Menu")
 	@Description ("The Hamburger Menu option 'All Items' will take the user to the home page")
 	public void verifyHM_AllItemsTest() {
 		hamburgerMenuPage.clickSwagLabsBackpackImgButton();
@@ -50,7 +52,7 @@ public class HamburgerMenuTest extends SeleniumWebDriver implements HamburgerMen
 	}
 	
 	@Test(priority = 3, description = "Verify that the Hamburger Menu Option 'About' takes the about page for the site", groups = {"All", "Regression", "burgerMenuRegression"})
-	@Story ("Verify the Hamburger Menu - 'About'")
+	@Story ("Verify the Hamburger Menu")
 	@Description ("The Hamburger Menu option 'About' will take the user to a new page")
 	public void verifyHM_AboutTest() {
 		hamburgerMenuPage.clickHamburgerMenuButton();
@@ -60,7 +62,7 @@ public class HamburgerMenuTest extends SeleniumWebDriver implements HamburgerMen
 	}
 	
 	@Test(priority = 4, description = "Verify that the Hamburger Menu Option 'Logout' logs the user out of the site", groups = {"All", "Regression", "burgerMenuRegression"})
-	@Story ("Verify the Hamburger Menu - 'Logout'")
+	@Story ("Verify the Hamburger Menu")
 	@Description ("The Hamburger Menu option 'Logout' will log the user out of the site")
 	public void verifyHM_LogoutTest() {
 		hamburgerMenuPage.clickHamburgerMenuButton();
@@ -70,7 +72,7 @@ public class HamburgerMenuTest extends SeleniumWebDriver implements HamburgerMen
 	}
 	
 	@Test(priority = 5, description = "Verify that the Hamburger Menu Option 'Reset App State' resets the site", groups = {"All", "Regression", "burgerMenuRegression"})
-	@Story ("Verify the Hamburger Menu - 'Reset App State'")
+	@Story ("Verify the Hamburger Menu")
 	@Description ("The Hamburger Menu option 'Reset App State' will reset the site")
 	public void verifyHM_ResetTest() {
 		hamburgerMenuPage.clickAddToCartButton();

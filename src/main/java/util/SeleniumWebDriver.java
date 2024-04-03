@@ -1,5 +1,7 @@
 package util;
 
+import java.util.concurrent.TimeUnit;
+
 //import org.openqa.selenium.Dimension;
 
 import org.openqa.selenium.OutputType;
@@ -93,11 +95,24 @@ public abstract class SeleniumWebDriver {
         final byte[] screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
         saveScreenshot(screenShot);
     }
+    
+    /**
+     * Wait for an specific amount of seconds
+     * @param seconds - time desired to wait
+     */
+    public void waitSeconds(double seconds){
+        try {
+            int sleepTime = (int) seconds * 1000;
+            TimeUnit.MILLISECONDS.sleep(sleepTime);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     @AfterMethod (alwaysRun = true)
-    public void afterMethod() throws InterruptedException {
+    public void afterMethod() {
     	takeScreenshot();
-    	Thread.sleep(3000);
+    	waitSeconds(3);
 		System.out.println("The test is now done");
     	if (driver != null) {
             driver.quit();

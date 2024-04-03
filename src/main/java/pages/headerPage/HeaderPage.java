@@ -47,10 +47,6 @@ public class HeaderPage extends BasePage{
     
     
 // --------------------------- METHODS ------------------------------------    
-	
-//    public boolean secondaryHeaderTitle() {
-//    	return headerSecondaryContainerElement.findElement((By) hscTitleElement).isDisplayed();
-//    }
     
     /**
      * Returns text from the logo

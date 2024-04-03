@@ -4,10 +4,12 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import pages.headerPage.HeaderPage;
 import util.SeleniumWebDriver;
 
+@Feature ("Swag Labs - Header Bar")
 public class HeaderPageTest extends SeleniumWebDriver {
 	HeaderPage headerPage;
 	@BeforeMethod (alwaysRun = true)

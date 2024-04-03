@@ -1,11 +1,15 @@
 package util;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -67,8 +71,12 @@ public abstract class BasePage {
     	wait.until(ExpectedConditions.invisibilityOf(element));
     }
     
+    /**
+     * Checking for element existence in the DOM
+     * @param elementList - list of webelements
+     * @return - true if element count is greater than zero
+     */
     public boolean doesElementExist(List<WebElement> elementList) {
-//    	return driver.findElements(By.cssSelector("")).size() > 0;
     	return elementList.size() > 0;
     }
     
@@ -119,5 +127,49 @@ public abstract class BasePage {
     public void clickTheElement(WebElement element) {
     	waitExplicitlyForElement(element);
     	element.click();
+    }
+    
+    /**
+     * Scroll to the Element in focus and center it on the page
+     * @param element - locator used to identify the element.
+     */
+    public void scrollToTheElement(WebElement element) {
+//    	action.scrollToElement(element).perform();
+    	JavascriptExecutor js = (JavascriptExecutor) driver;
+        try {
+            js.executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'})", element);
+        } catch (StaleElementReferenceException e){
+            System.out.println("StaleElementReferenceException, unable to scroll");
+        }
+    }
+    
+    /**
+     * Scroll by number of pixels horizontally, vertically or both
+     * @param x - number of pixels to scroll horizontally
+     * @param y - number of pixels to scroll vertically
+     */
+    public void scrollByPixels(int x, int y) {
+    	action.scrollByAmount(x, y).perform();
+    }
+    
+    /**
+     * Wait for an specific amount of seconds
+     * @param seconds - time desired to wait
+     */
+    public void waitSeconds(double seconds){
+        try {
+            int sleepTime = (int) seconds * 1000;
+            TimeUnit.MILLISECONDS.sleep(sleepTime);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    /**
+     * Stores window ids in array list and then switches to the active tab
+     */
+    public void switchFocusToNewBrowserTab() {
+        ArrayList<String> tabWindow = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabWindow.get(1));
     }
 }

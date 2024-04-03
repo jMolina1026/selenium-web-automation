@@ -1,5 +1,4 @@
 package pages.LoginPage;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
