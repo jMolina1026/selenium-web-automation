@@ -8,7 +8,7 @@ import io.qameta.allure.Story;
 import pages.LoginPage.LoginPageFinalVariables;
 import util.SeleniumWebDriver;
 
-@Feature ("We need to test the Login Page")
+@Feature ("Swag Labs - Login Page")
 public class LoginPageTest extends SeleniumWebDriver implements LoginPageFinalVariables{
 
 	@Test(priority = 1, description = "Verfiy the Login Page", groups = {"All", "Sanity", "loginSanity"})

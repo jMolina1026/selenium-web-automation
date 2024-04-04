@@ -1,10 +1,16 @@
 package util;
 
+import java.text.MessageFormat;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.JavascriptExecutor;
+
 //import org.openqa.selenium.Dimension;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.bidi.script.Message;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -40,6 +46,7 @@ public abstract class SeleniumWebDriver {
     
 	String browserDriver = System.getProperty(getPropertyKey(PropertyKey.DRIVER_NAME));
 	String runType = System.getProperty(getPropertyKey(PropertyKey.HEADED_OR_HEADLESS));
+	String userAgentChromeVersion = System.getProperty(PropertyKey.USER_AGENT_CHROME_VERSION);
 
     public String userName = System.getProperty(getPropertyKey(PropertyKey.USERNAME));
     public String passWord = System.getProperty(getPropertyKey(PropertyKey.PASSWORD));
@@ -53,9 +60,9 @@ public abstract class SeleniumWebDriver {
                 break;
             case "chromeDriver":
             	chromeOptions.addArguments(getPropertyKey(PropertyKey.WINDOW_SIZE));
-//            	chromeOptions.addArguments("window-size=1680,1050");
             	if (runType.equals(getPropertyKey(PropertyKey.RUN_HEADELESS_MODE))) {
                 	chromeOptions.addArguments(runType);
+                	chromeOptions.addArguments(getPropertyKey(PropertyKey.USER_AGENT_CHROME).concat(userAgentChromeVersion));
                     driver = new ChromeDriver(chromeOptions);
             	} else if (runType.equals(getPropertyKey(PropertyKey.RUN_HEADED_MODE))){
             		driver = new ChromeDriver(chromeOptions);
@@ -93,12 +100,38 @@ public abstract class SeleniumWebDriver {
         final byte[] screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
         saveScreenshot(screenShot);
     }
+    
+    /**
+     * Wait for an specific amount of seconds
+     * @param seconds - time desired to wait
+     */
+    public void waitSeconds(double seconds){
+        try {
+            int sleepTime = (int) seconds * 1000;
+            TimeUnit.MILLISECONDS.sleep(sleepTime);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public String getUserAgent() {
+		String userAgentString = (String) ((JavascriptExecutor) driver).executeScript("return navigator.userAgent;");
+//		System.out.println(userAgentString);
+		return userAgentString;
+	}
+
+	public String replaceUserAgent() {
+		String newUserAgent = getUserAgent().replace("Headless", "");
+//		System.out.println(newUserAgent);
+		return newUserAgent;
+	}
 
     @AfterMethod (alwaysRun = true)
-    public void afterMethod() throws InterruptedException {
+    public void afterMethod() {
     	takeScreenshot();
-    	Thread.sleep(3000);
+    	waitSeconds(3);
 		System.out.println("The test is now done");
+		replaceUserAgent();
     	if (driver != null) {
             driver.quit();
         }

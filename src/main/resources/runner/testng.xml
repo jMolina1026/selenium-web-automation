@@ -12,6 +12,7 @@
       <class name="loginPageTests.LoginPageTest"/>
       <class name="headerPageTests.HeaderPageTest"/>
       <class name="hamburgerMenuTests.HamburgerMenuTest"/>
+      <class name="footerTests.FooterTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
