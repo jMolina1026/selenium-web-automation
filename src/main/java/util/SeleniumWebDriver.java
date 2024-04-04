@@ -62,7 +62,7 @@ public abstract class SeleniumWebDriver {
             	chromeOptions.addArguments(getPropertyKey(PropertyKey.WINDOW_SIZE));
             	if (runType.equals(getPropertyKey(PropertyKey.RUN_HEADELESS_MODE))) {
                 	chromeOptions.addArguments(runType);
-                	chromeOptions.addArguments(getPropertyKey(PropertyKey.USER_AGENT).concat(userAgentChromeVersion));
+                	chromeOptions.addArguments(getPropertyKey(PropertyKey.USER_AGENT_CHROME).concat(userAgentChromeVersion));
                     driver = new ChromeDriver(chromeOptions);
             	} else if (runType.equals(getPropertyKey(PropertyKey.RUN_HEADED_MODE))){
             		driver = new ChromeDriver(chromeOptions);
