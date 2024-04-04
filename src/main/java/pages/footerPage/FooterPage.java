@@ -45,6 +45,8 @@ public class FooterPage extends BasePage {
 	 * Returns true or false depending on if the element is present
 	 * @return - TRUE, if the element is present
 	 */
+	@Step("Is the Footer Element Present")
+	@Attachment
 	public boolean isFooterElementPresent(WebElement element) {
 		return isElementPresent(element);
 	}
@@ -54,6 +56,7 @@ public class FooterPage extends BasePage {
 	 * @param element - locator used to identify the element and click it.
 	 * @param element2 - locator used to identify the element and wait for it.
 	 */
+	@Step("Click the Social Media Element")
 	public void clickFooterSocialMediaElement(WebElement element, WebElement element2) {
 		clickTheElement(element);
 		switchFocusToNewBrowserTab();

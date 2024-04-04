@@ -96,6 +96,10 @@
 				         <name>allure.results.directory</name>
 				         <value>target/allure-results</value>
 				     </property>
+ 				     <property>
+				         <name>allure.link.tms.pattern</name>
+				         <value>https://www.google.com/search?{}</value>
+				     </property>
 			 	 </systemProperties>
 
 			 	 <suiteXmlFiles>

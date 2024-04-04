@@ -5,12 +5,22 @@ import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
+import io.qameta.allure.Link;
+import io.qameta.allure.Links;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
+import io.qameta.allure.TmsLink;
+import io.qameta.allure.testng.Tag;
+import io.qameta.allure.testng.Tags;
 import pages.footerPage.FooterPage;
 import pages.footerPage.FooterPageFinalVariables;
 import util.SeleniumWebDriver;
 
 @Feature ("Swag Labs - Footer Field")
+@Links({ @Link(name = "Swag Labs", url="https://www.saucedemo.com/",type = "Internal"),
+    @Link(name = "Sauce Labs", url="https://saucelabs.com/",type = "Internal")})
+@TmsLink("q=dogs")
 public class FooterTest extends SeleniumWebDriver implements FooterPageFinalVariables{
 	FooterPage footerPage;
 	@BeforeMethod (alwaysRun = true)
@@ -23,6 +33,8 @@ public class FooterTest extends SeleniumWebDriver implements FooterPageFinalVari
 	
 	@Test(priority = 1, description = "Verify the Footer Elements", groups = {"All", "Sanity", "FooterSanity"})
 	@Story ("Verify the Footer Fields and Elements")
+	@Severity(SeverityLevel.BLOCKER)
+	@Tags({@Tag("Footer"), @Tag("Sanity")})
 	@Description ("The Footer field contains all the required elements")
 	public void verifyFooterFieldTest() {
 		softAssert.assertTrue(footerPage.isFooterElementPresent(footerPage.footerFieldElement), SWAG_LABS_FOOTER_FIELD);
@@ -43,6 +55,8 @@ public class FooterTest extends SeleniumWebDriver implements FooterPageFinalVari
 	
 	@Test(priority = 2, description = "Verify the Twitter/X icon footer element", groups = {"All", "Regression", "FooterRegression"})
 	@Story ("Verify the footer Social Media Icons and Copy Right")
+	@Severity(SeverityLevel.NORMAL)
+	@Tags({@Tag("Footer"), @Tag("Regression")})
 	@Description ("The Twitter/X icon is displayed and navigates the user to the Saucelabs twitter account")
 	public void verifyTwitterXIconTest() {
 		footerPage.clickFooterSocialMediaElement(footerPage.footerSocialMediaListElements.get(0), footerPage.twitterXLogoElement);
@@ -52,6 +66,8 @@ public class FooterTest extends SeleniumWebDriver implements FooterPageFinalVari
 	
 	@Test(priority = 3, description = "Verify the Facebook icon footer element", groups = {"All", "Regression", "FooterRegression"})
 	@Story ("Verify the footer Social Media Icons and Copy Right")
+	@Severity(SeverityLevel.NORMAL)
+	@Tags({@Tag("Footer"), @Tag("Regression")})
 	@Description ("The Facebook icon is displayed and navigates the user to the Saucelabs facebook account")
 	public void verifyFacebookIconTest() {
 		footerPage.clickFooterSocialMediaElement(footerPage.footerSocialMediaListElements.get(1), footerPage.facebookLogoElement);
@@ -61,6 +77,8 @@ public class FooterTest extends SeleniumWebDriver implements FooterPageFinalVari
 	
 	@Test(priority = 4, description = "Verify the LinkedIn icon footer element", groups = {"All", "Regression", "FooterRegression"})
 	@Story ("Verify the footer Social Media Icons and Copy Right")
+	@Severity(SeverityLevel.NORMAL)
+	@Tags({@Tag("Footer"), @Tag("Regression")})
 	@Description ("The LinkedIn icon is displayed and navigates the user to the Saucelabs LinkedIn account")
 	public void verifyLinkedInIconTest() {
 		footerPage.clickFooterSocialMediaElement(footerPage.footerSocialMediaListElements.get(2), footerPage.linkedInLogoElement);
