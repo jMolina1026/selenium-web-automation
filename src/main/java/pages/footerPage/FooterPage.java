@@ -65,7 +65,7 @@ public class FooterPage extends BasePage {
 	
 	/**
      * Returns text from one the footer field items
-     * @param index - position of element in the list
+     * @param element - locator used to identify the element
      * @return - footer items text
      */
 	@Step("Get the Footer Elements text")

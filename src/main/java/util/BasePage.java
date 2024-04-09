@@ -72,6 +72,16 @@ public abstract class BasePage {
     }
     
     /**
+     * Counts the total amount of elements
+     * @param elements - locator used to identify multiple elements
+     * @return - list of elements
+     */
+	public int countOfElements(List<WebElement> elements) {
+		waitExplicitlyForElement(elements.get(0));
+		return elements.size();
+	}
+    
+    /**
      * Checking for element existence in the DOM
      * @param elementList - list of webelements
      * @return - true if element count is greater than zero

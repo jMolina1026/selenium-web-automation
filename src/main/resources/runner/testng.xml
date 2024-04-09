@@ -13,6 +13,7 @@
       <class name="headerPageTests.HeaderPageTest"/>
       <class name="hamburgerMenuTests.HamburgerMenuTest"/>
       <class name="footerTests.FooterTest"/>
+      <class name="productTests.ProductTest"></class>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
