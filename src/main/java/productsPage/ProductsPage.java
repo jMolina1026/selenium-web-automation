@@ -1,6 +1,5 @@
 package productsPage;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.WebDriver;
@@ -70,13 +69,17 @@ public class ProductsPage extends BasePage{
 		return countOfElements(elements);
 	}
 	
-	public void testScript5() {
-		List<List<WebElement>> test0 = List.of(productImgElements, productNameElements);
+	/**
+	 * Checks to see if all elements are present on the products page
+	 * uses two for loops to accomplish this
+	 */
+	public void areTheProductPageElementsPresent() {
+		List<List<WebElement>> listOfElements = List.of(productImgElements, productNameElements);
 		boolean isPresent = false;
-		for (int i = 0; i < test0.size(); i++) {
-			for (int j = 0; j < test0.get(i).size(); j++) {
-				isPresent = isProductPageElementPresent(test0.get(i).get(j));
-				softAssert.assertTrue(isPresent, "Position [" + i + "," + j + "] --> Element Locator: " +  test0.get(i).get(j));
+		for (int i = 0; i < listOfElements.size(); i++) {
+			for (int j = 0; j < listOfElements.get(i).size(); j++) {
+				isPresent = isProductPageElementPresent(listOfElements.get(i).get(j));
+				softAssert.assertTrue(isPresent, "Position [" + i + "," + j + "] --> Element Locator: " +  listOfElements.get(i).get(j));
 			}
 		}
 		softAssert.assertAll();
