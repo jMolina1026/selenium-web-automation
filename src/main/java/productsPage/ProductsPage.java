@@ -37,16 +37,32 @@ public class ProductsPage extends BasePage{
 	@FindBys(@FindBy(css = "div.inventory_item_img"))
 	public List<WebElement> productImgElements;
 	
+	@FindBys(@FindBy(css = "span.shopping_cart_badge"))
+	public List<WebElement> shoppingCartBadgeElements;
+	
+	@FindBys(@FindBy(css = "button.btn_secondary"))
+	public List<WebElement> productRemoveButtonsElements;
+	
 // --------------------------- METHODS ------------------------------------    
 	SoftAssert softAssert = new SoftAssert();
 	/**
 	 * Returns true or false depending on if the element is present
 	 * @return - TRUE, if the element is present
 	 */
-	@Step("Is the Products Element Present")
+	@Step("Is the Products Element Present?")
 	@Attachment
 	public boolean isProductPageElementPresent(WebElement element) {
 		return isElementPresent(element);
+	}
+	
+	/**
+	 * Returns true or false depending on if the element is Not present
+	 * @return - False, if the element is present
+	 */
+	@Step("Does the Products Element Exist?")
+	@Attachment
+	public boolean doesProductPageElementExist(List<WebElement> elements) {
+		return doesElementExist(elements);
 	}
 	
 	/**
@@ -69,6 +85,19 @@ public class ProductsPage extends BasePage{
 		return countOfElements(elements);
 	}
 	
+	public void clickAddToCartButton(int index) {
+		clickTheElement(productAddToCartButtonsElements.get(index));
+	}
+	
+	public void clickRemoveFromCartButton(int index) {
+		clickTheElement(productRemoveButtonsElements.get(index));
+	}
+	
+	
+//	public boolean isShoppingCart
+	
+	
+// -----------------------------------------------------------------------------------------	
 	/**
 	 * Checks to see if all elements are present on the products page
 	 * uses two for loops to accomplish this

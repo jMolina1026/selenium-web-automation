@@ -11,6 +11,7 @@ public class ProductsPageMap extends PagesMaps{
 	public Map<String, String> productDescMap;
 	public Map<String, String> productNameMap;
 	public Map<String, String> productPriceMap;
+	public Map<String, String> productAddToCartMap;
 	public ProductsPageMap() {
 		super();
 		// Map 1
@@ -39,30 +40,75 @@ public class ProductsPageMap extends PagesMaps{
 		productPriceMap.put("JacketPrice", "$49.99");
 		productPriceMap.put("OnesiePrice", "$7.99");
 		productPriceMap.put("RedShirtPrice", "$15.99");
+		
+		// Map 4
+		productAddToCartMap = new LinkedHashMap<String, String>();
+		productAddToCartMap.put("BackPackATC", "Add to cart");
+		productAddToCartMap.put("BikeLightATC", "Add to cart");
+		productAddToCartMap.put("BoltTShirtATC", "Add to cart");
+		productAddToCartMap.put("JacketATC", "Add to cart");
+		productAddToCartMap.put("OnesieATC", "Add to cart");
+		productAddToCartMap.put("RedShirtATC", "Add to cart");
 	}
 	
+	/**
+	 * This method returns the amount of key/value pairs added to the map
+	 * @return - size of Product Name Map
+	 */
 	public int getProductNameMapSize() {
 		return getStrStrMapSize(productNameMap);
 	}
 	
+	/**
+	 * This method uses a number index to identify the position of the key/value pair in the map
+	 * @param keyIndex - the position of the key/value pair in the array
+	 * @return - String value from a key/value pair
+	 */
 	public String getProductNameMapValue(int keyIndex) {
 		return getStrStrMapValueByIndex(productNameMap, keyIndex);
 	}
 	
+	/**
+	 * This method returns the amount of key/value pairs added to the map
+	 * @return - size of Product Desc Map
+	 */
 	public int getProductDescMapSize() {
 		return getStrStrMapSize(productDescMap);
 	}
 	
+	/**
+	 * This method uses a number index to identify the position of the key/value pair in the map
+	 * @param valueIndex - the position of the key/value pair in the array
+	 * @return - String key from a key/value pair
+	 */
 	public String getProductDescMapKey(int valueIndex) {
 		return getStrStrMapKeyByIndex(productDescMap, valueIndex);
 	}
 	
+	/**
+	 * This method uses a number index to identify the position of the key/value pair in the map
+	 * @param keyIndex - the position of the key/value pair in the array
+	 * @return - String value from a key/value pair
+	 */
 	public String getProductDescMapValue(int keyIndex) {
 		return getStrStrMapValueByIndex(productDescMap, keyIndex);
 	}
 	
-	
+	/**
+	 * This method uses a number index to identify the position of the key/value pair in the map
+	 * @param keyIndex - the position of the key/value pair in the array
+	 * @return - String value from a key/value pair
+	 */
 	public String getProductPriceMapValue(int keyIndex) {
 		return getStrStrMapValueByIndex(productPriceMap, keyIndex);
+	}
+	
+	/**
+	 * This method uses a number index to identify the position of the key/value pair in the map
+	 * @param keyIndex - the position of the key/value pair in the array
+	 * @return - String value from a key/value pair
+	 */
+	public String getProductATCMapValue(int keyIndex) {
+		return getStrStrMapValueByIndex(productAddToCartMap, keyIndex);
 	}
 }

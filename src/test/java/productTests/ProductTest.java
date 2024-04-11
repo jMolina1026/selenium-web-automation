@@ -1,5 +1,7 @@
 package productTests;
 
+import java.util.concurrent.TimeUnit;
+
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -26,8 +28,6 @@ public class ProductTest extends SeleniumWebDriver {
 	@Story ("Verify the Product Page")
 	@Description ("The product page contains all available items for sale")
 	public void verifyProductPageTest() {
-//		int sizeOfMap = productMap.getProductNameMapSize();
-//		System.out.println("Size of the Products Map = " + sizeOfMap);
 		int productsLength = productsPage.countOfElements(productsPage.productItemContainerElements);
 		System.out.println(productsLength);
 		for (int i = 0; i < productsLength; i++) {
@@ -43,6 +43,7 @@ public class ProductTest extends SeleniumWebDriver {
 			softAssert.assertEquals(productsPage.getProductPageElementsText(productsPage.productPriceElements.get(i)), productMap.getProductPriceMapValue(i));
 			
 			softAssert.assertTrue(productsPage.isProductPageElementPresent(productsPage.productAddToCartButtonsElements.get(i)));
+			softAssert.assertEquals(productsPage.getProductPageElementsText(productsPage.productAddToCartButtonsElements.get(i)), productMap.getProductATCMapValue(i));
 		}
 		softAssert.assertAll();
 	}
@@ -52,5 +53,29 @@ public class ProductTest extends SeleniumWebDriver {
 	@Description ("The product page contains all available items for sale - V2")
 	public void verifyProductPageV2Test() {
 		productsPage.areTheProductPageElementsPresent();
+	}
+	
+	@Test(priority = 3, description = "Verfiy the Product Add to Cart action", groups = {"All", "Sanity", "productRegression"})
+	@Story ("Verify the Product Page")
+	@Description ("The product page contains 'Add to Cart'buttons, user should be able to add or remove via this button")
+	public void verifyProductAddToCartTest() {
+		int addToCartlength = productsPage.productAddToCartButtonsElements.size();
+		for (int i = 0; i < addToCartlength; i++) {
+			productsPage.clickAddToCartButton(0);
+			softAssert.assertTrue(productsPage.isProductPageElementPresent(productsPage.shoppingCartBadgeElements.get(0)), "The shopping cart badge is not present after adding an item, check if visible on page");
+			softAssert.assertEquals(productsPage.getProductPageElementsText(productsPage.shoppingCartBadgeElements.get(0)), Integer.toString(i + 1));
+		}
+		int removeFromCartlength = productsPage.productRemoveButtonsElements.size();
+		for (int j = removeFromCartlength; j > 0; j--) {
+			productsPage.clickRemoveFromCartButton(j - 1);
+			if (productsPage.productRemoveButtonsElements.size() >= 1) {
+				softAssert.assertTrue(productsPage.isProductPageElementPresent(productsPage.shoppingCartBadgeElements.get(0)), "The shopping cart badge is not present after removing an item, check if visible on page (removal case expects badge to exist unless all items are removed)");
+				softAssert.assertEquals(productsPage.getProductPageElementsText(productsPage.shoppingCartBadgeElements.get(0)), Integer.toString(productsPage.productRemoveButtonsElements.size()));
+			} else {
+				waitSeconds(2);
+				softAssert.assertFalse(productsPage.doesProductPageElementExist(productsPage.shoppingCartBadgeElements), "The shopping cart should not exist if not items have been added to the cart");
+			}
+		}
+		softAssert.assertAll();
 	}
 }
