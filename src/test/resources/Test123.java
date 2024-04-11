@@ -37,4 +37,19 @@ public class Test123 {
 //		test3.add(test2);
 //		System.out.println("\n" + test3.toString() + "\n--------------------------");
 	}
+	
+	    // Arraylist example
+		public String whichSortOptionIsActive() {
+			String selectedOption = "";
+			ArrayList<String> sortTextArrayList = sortOptionsArrayList();
+			int length = lengthOfSortOptionElements(sortOptionElements);
+			String activeOption = getProductPageElementsText(activeSortOptionElement);
+			for (int j = 0; j < length; j++) {
+				if (sortTextArrayList.get(j).equals(activeOption)) {
+					selectedOption  = getProductPageElementsText(sortOptionElements.get(j));
+					break;
+				}
+			}
+			return selectedOption;
+		}
 }

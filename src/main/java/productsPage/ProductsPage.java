@@ -1,19 +1,24 @@
 package productsPage;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.text.html.CSS;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.asserts.SoftAssert;
+import org.w3c.dom.Text;
 
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import util.BasePage;
 
 public class ProductsPage extends BasePage{
-
+	Select select;
 	public ProductsPage (WebDriver driver) {
 		super(driver);
 	}
@@ -30,7 +35,6 @@ public class ProductsPage extends BasePage{
 	@FindBys(@FindBy(css = "div.inventory_item_price"))
 	public List<WebElement> productPriceElements;
 	
-	//button#add-to-cart-sauce-labs-backpack
 	@FindBys(@FindBy(css = "button.btn_primary"))
 	public List<WebElement> productAddToCartButtonsElements;
 	
@@ -42,6 +46,15 @@ public class ProductsPage extends BasePage{
 	
 	@FindBys(@FindBy(css = "button.btn_secondary"))
 	public List<WebElement> productRemoveButtonsElements;
+	
+	@FindBy(css = "span.active_option")
+	public WebElement activeSortOptionElement;
+	
+	@FindBy(css = "select.product_sort_container")
+	public WebElement sortContainerElement;
+	
+	@FindBys(@FindBy(css = "select.product_sort_container > option"))
+	private List<WebElement> sortOptionElements;
 	
 // --------------------------- METHODS ------------------------------------    
 	SoftAssert softAssert = new SoftAssert();
@@ -85,16 +98,49 @@ public class ProductsPage extends BasePage{
 		return countOfElements(elements);
 	}
 	
+	/**
+	 * Clicks the add to cart button depending on index
+	 * @param index - ordered position of the add to cart button
+	 */
 	public void clickAddToCartButton(int index) {
 		clickTheElement(productAddToCartButtonsElements.get(index));
 	}
 	
+	/**
+	 * Clicks the remove from cart button depending on index
+	 * @param index - ordered position of the remove from cart button
+	 */
 	public void clickRemoveFromCartButton(int index) {
 		clickTheElement(productRemoveButtonsElements.get(index));
 	}
 	
+	/**
+     * (Select/Option only) A list of elements to be set within an Array List
+	 * @return - ArrayList containing all available options from select dropdown
+	 */
+	public ArrayList<String> sortOptionsArrayList() {
+		return selectOptionsArrayList(sortContainerElement);
+	}
 	
-//	public boolean isShoppingCart
+	/**
+     * (Select/Option only) The select option is selected by Text matching the list of options from the dropdown
+     * In this case are the text options are selected from an arraylist
+	 * @param index - position of the sort option
+	 */
+	public void selectSortOptionByText(int index) {
+		ArrayList<String> sortTextArrayList = sortOptionsArrayList();
+		String sortOptionText = sortTextArrayList.get(index);
+		selectAnOptionByText(sortContainerElement, sortOptionText);
+	}
+	
+	/**
+     * (Select/Option only) The first and currently active element found in the select element will 
+     * be obtained to get its text
+     * @return - currently active element
+	 */
+	public String getActiveSortOptionText() {
+		return getActiveSelectedOptionText(sortContainerElement);
+	}
 	
 	
 // -----------------------------------------------------------------------------------------	

@@ -1,5 +1,6 @@
 package productTests;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import org.testng.annotations.BeforeMethod;
@@ -75,6 +76,21 @@ public class ProductTest extends SeleniumWebDriver {
 				waitSeconds(2);
 				softAssert.assertFalse(productsPage.doesProductPageElementExist(productsPage.shoppingCartBadgeElements), "The shopping cart should not exist if not items have been added to the cart");
 			}
+		}
+		softAssert.assertAll();
+	}
+	
+	@Test(priority = 4, description = "Verfiy the Product Sort Options", groups = {"All", "Sanity", "productRegressions"})
+	@Story ("Verify the Product Page")
+	@Description ("The product page contains the ability to sort, user should be able to sort alphanumerically")
+	public void verifyProductSortTest() {
+		int optionsLength = productsPage.listOfSelectElements(productsPage.sortContainerElement).size();
+		for (int i = 0; i < optionsLength; i++) {
+			productsPage.selectSortOptionByText(i);
+			System.out.println(productsPage.sortOptionsArrayList());
+			String selectedActiveOption = productsPage.getActiveSortOptionText();
+			System.out.println(selectedActiveOption);
+			softAssert.assertEquals(selectedActiveOption, productsPage.sortOptionsArrayList().get(i));
 		}
 		softAssert.assertAll();
 	}
