@@ -236,4 +236,5 @@ public abstract class BasePage {
     	String activeOption = getElementText(select.getFirstSelectedOption());
     	return activeOption;
     }
+
 }

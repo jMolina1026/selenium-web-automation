@@ -1,9 +1,10 @@
 package productsPage;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
-
-import javax.swing.text.html.CSS;
+import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,7 +12,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.asserts.SoftAssert;
-import org.w3c.dom.Text;
 
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
@@ -19,8 +19,10 @@ import util.BasePage;
 
 public class ProductsPage extends BasePage{
 	Select select;
+	ProductsPageMap productMap;
 	public ProductsPage (WebDriver driver) {
 		super(driver);
+		productMap = new ProductsPageMap();
 	}
 	
 	@FindBys(@FindBy(css = "div.inventory_item"))
@@ -141,6 +143,109 @@ public class ProductsPage extends BasePage{
 	public String getActiveSortOptionText() {
 		return getActiveSelectedOptionText(sortContainerElement);
 	}
+	
+	
+    public ArrayList<String> sortListAscendingOrder(Map<String, String> map) {
+    	ArrayList<String> arrayList = new ArrayList<String>();
+    	arrayList.addAll(map.values());
+    	Collections.sort(arrayList);
+    	return arrayList;
+    }
+    
+    public ArrayList<String> sortListDescendingOrder(Map<String, String> map) {
+    	ArrayList<String> arrayList = new ArrayList<String>();
+    	arrayList.addAll(map.values());
+    	Collections.sort(arrayList, Collections.reverseOrder());
+    	return arrayList;
+    }
+    
+    public ArrayList<Double> sortListAscendingOrder(ArrayList<Double> doubleArrayList) {
+    	Collections.sort(doubleArrayList);
+    	return doubleArrayList;
+    }
+    
+    public ArrayList<Double> sortListDescendingOrder(ArrayList<Double> doubleArrayList) {
+    	Collections.sort(doubleArrayList, Collections.reverseOrder());
+    	return doubleArrayList;
+    }
+    
+    public ArrayList<Double> createArrayListTypeDoubleFromMap(Map<String, String> map) {
+    	ArrayList<Double> doubleArrayList = new ArrayList<Double>();
+		for (String stringMap : map.values()) {
+			Double doubleMap = Double.parseDouble(stringMap.replace("$", ""));
+			doubleArrayList.add(doubleMap);
+		}
+    	return doubleArrayList;
+    }
+    
+    
+    
+    public ArrayList<String> testSwitch(int number, Map<String, String> map, ArrayList<Double> doubleArrayList) {
+    	ArrayList<String> arrayList = null;
+    	switch (number) {
+		case 0:
+			arrayList = sortListAscendingOrder(map); //productMap.productNameMap
+			break;
+		case 1:
+			arrayList = sortListDescendingOrder(map);
+			break;
+		case 2:
+			arrayList = sortListAscendingOrder(doubleArrayList);
+			break;
+		case 3:
+			arrayList = sortListDescendingOrder(doubleArrayList);
+			break;
+		default:
+			throw new IllegalArgumentException("Unexpected value1: " + number);
+		}
+    	return arrayList;
+    }
+    
+    public Map<String, String> testSwitch2(int number) {
+    	Map<String, String> map;
+    	switch (number) {
+		case 0:
+		case 1:
+			map = productMap.productNameMap;
+			break;
+		case 2:
+		case 3:
+			map = productMap.productPriceMap;
+			break;
+		default:
+			throw new IllegalArgumentException("Unexpected value2: " + number);
+		}
+    	return map;
+    }
+    
+    public List<WebElement> testSwitch3(int number) {
+    	List<WebElement> elements;
+    	switch (number) {
+		case 0:
+		case 1:
+			elements = productNameElements;
+			break;
+		case 2:
+		case 3:
+			elements = productPriceElements;
+			break;
+		default:
+			throw new IllegalArgumentException("Unexpected value3: " + number);
+		}
+    	return elements;
+    }
+    
+//    public void testTest(int i) {
+//    	ArrayList<String> arrayList = testSwitch(i, testSwitch2(i));
+//		int arrayListSize = arrayList.size();
+//		for (int j = 0; j < arrayListSize; j++) {
+//			System.out.println(testSwitch3(i).get(j).getText());
+//			System.out.println(arrayList.get(j));
+//			softAssert.assertEquals(testSwitch3(i).get(j).getText(), arrayList.get(j));
+//		}
+//		System.out.println("\n");
+//		softAssert.assertAll();
+//    }
 	
 	
 // -----------------------------------------------------------------------------------------	

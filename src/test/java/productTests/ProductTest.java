@@ -1,7 +1,8 @@
 package productTests;
 
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -87,10 +88,59 @@ public class ProductTest extends SeleniumWebDriver {
 		int optionsLength = productsPage.listOfSelectElements(productsPage.sortContainerElement).size();
 		for (int i = 0; i < optionsLength; i++) {
 			productsPage.selectSortOptionByText(i);
-			System.out.println(productsPage.sortOptionsArrayList());
+//			System.out.println(productsPage.sortOptionsArrayList());
 			String selectedActiveOption = productsPage.getActiveSortOptionText();
 			System.out.println(selectedActiveOption);
 			softAssert.assertEquals(selectedActiveOption, productsPage.sortOptionsArrayList().get(i));
+//			if (selectedActiveOption.equals(productsPage.sortOptionsArrayList().get(0))) { //A->Z
+			
+			ArrayList<Double> doubleArrayList = productsPage.createArrayListTypeDoubleFromMap(productMap.productPriceMap);
+				ArrayList<String> arrayList = productsPage.testSwitch(i, productsPage.testSwitch2(i), doubleArrayList);
+				int arrayListSize = arrayList.size();
+				for (int j = 0; j < arrayListSize; j++) {
+					System.out.println(productsPage.testSwitch3(i).get(j).getText());
+					System.out.println(arrayList.get(j));
+					softAssert.assertEquals(productsPage.testSwitch3(i).get(j).getText(), arrayList.get(j));
+				}
+				System.out.println("\n");
+			
+//			productsPage.testTest(i);
+				
+//			if (i == 0 || i == 1) {
+//				ArrayList<String> sortedArrayList = null;
+//				if (i == 0) {
+//					sortedArrayList = productsPage.sortListAscendingOrder(productMap.productNameMap);
+//				} else if (i == 1) {
+//					sortedArrayList = productsPage.sortListDescendingOrder(productMap.productNameMap);
+//				}
+//				int arrayListSize = sortedArrayList.size();
+//				for (int j = 0; j < arrayListSize; j++) {
+//					System.out.println(productsPage.productNameElements.get(j).getText());
+//					System.out.println(sortedArrayList.get(j));
+//					softAssert.assertEquals(productsPage.productNameElements.get(j).getText(), sortedArrayList.get(j));
+//				}
+//				System.out.println("\n");
+//			} else if (i == 2 || i == 3) {
+//				ArrayList<Double> doubleArrayList = productsPage.createArrayListTypeDoubleFromMap(productMap.productPriceMap);
+//				ArrayList<Double> sortedArrayList = null;
+//				if (i == 2) {
+//					sortedArrayList = productsPage.sortListAscendingOrder(doubleArrayList);
+//				} else if (i == 3) {
+//					sortedArrayList = productsPage.sortListDescendingOrder(doubleArrayList);
+//				}
+////				for (Double teString : sortedArrayList) {
+////					System.out.println(teString);
+////				}
+//				int arrayListSize = sortedArrayList.size();
+//				for (int j = 0; j < arrayListSize; j++) {
+//					String listOfElements = productsPage.productPriceElements.get(j).getText().replace("$", "");
+//					Double convertListToDouble = Double.parseDouble(listOfElements);
+//					System.out.println("testListOfElements = " + convertListToDouble);
+//					System.out.println("testArrayListOfPrices = " + sortedArrayList.get(j));
+//					softAssert.assertEquals(convertListToDouble, sortedArrayList.get(j));
+//				}
+//				System.out.println("\n");
+//			}
 		}
 		softAssert.assertAll();
 	}
