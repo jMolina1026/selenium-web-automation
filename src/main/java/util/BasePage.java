@@ -2,7 +2,10 @@ package util;
 
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -16,6 +19,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.qameta.allure.Attachment;
@@ -27,7 +31,7 @@ public abstract class BasePage {
     
 	public BasePage(WebDriver driver){
         this.driver = driver;
-        this.action = new Actions(this.driver);
+        this.action = new Actions(driver);
 
         //This initElements method will create all WebElements
         PageFactory.initElements(driver, this);
@@ -70,6 +74,16 @@ public abstract class BasePage {
     public void waitExplicitlyForInvisibleElement(WebElement element) {
     	wait.until(ExpectedConditions.invisibilityOf(element));
     }
+    
+    /**
+     * Counts the total amount of elements
+     * @param elements - locator used to identify multiple elements
+     * @return - list of elements
+     */
+	public int countOfElements(List<WebElement> elements) {
+		waitExplicitlyForElement(elements.get(0));
+		return elements.size();
+	}
     
     /**
      * Checking for element existence in the DOM
@@ -172,4 +186,55 @@ public abstract class BasePage {
         ArrayList<String> tabWindow = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(tabWindow.get(1));
     }
+    
+    /**
+     * (Select/Option only) A list of elements to be set within an Array List
+     * @param element - locator used to identify the element. (Select Tag Only)
+     * @return - ArrayList containing all available options from select dropdown
+     */
+	public ArrayList<String> selectOptionsArrayList(WebElement element) {
+		ArrayList<String> sortTextArrayList = new ArrayList<String>();
+		int size = listOfSelectElements(element).size();
+		for (int i = 0; i < size; i++) {
+			String sortText = getElementText(listOfSelectElements(element).get(i));
+			sortTextArrayList.add(sortText);
+		}
+		return sortTextArrayList;
+	}
+	
+    /**
+     * (Select/Option only) A list of elements
+     * @param element - locator used to identify the element. (Select Tag Only)
+     * @return - list of elements from the options in the Select element
+     */
+    public List<WebElement> listOfSelectElements(WebElement element) {
+    	waitExplicitlyForElement(element);
+    	Select select = new Select(element);
+		List<WebElement> elements = select.getOptions();
+		return elements;
+    }
+
+    /**
+     * (Select/Option only) The select option is selected by Text matching the list of options from the dropdown
+     * @param element - locator used to identify the element. (Select Tag Only)
+     * @param text - string to be used to identify which option to select to use
+     */
+    public void selectAnOptionByText(WebElement element, String text) {
+        waitExplicitlyForElement(element);
+    	Select select = new Select(element);
+    	select.selectByVisibleText(text);
+    }
+    
+    /**
+     * (Select/Option only) The first and currently active element found in the select element will 
+     * be obtained to get its text
+     * @param element - locator used to identify the element. (Select Tag Only)
+     * @return - currently active element
+     */
+    public String getActiveSelectedOptionText(WebElement element) {
+    	Select select = new Select(element);
+    	String activeOption = getElementText(select.getFirstSelectedOption());
+    	return activeOption;
+    }
+
 }
