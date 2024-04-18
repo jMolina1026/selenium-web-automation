@@ -89,31 +89,21 @@ public class ProductTest extends SeleniumWebDriver {
 		for (int i = 0; i < optionsLength; i++) {
 			productsPage.selectSortOptionByText(i);
 			String selectedActiveOption = productsPage.getActiveSortOptionText();
-			System.out.println(selectedActiveOption);
 			softAssert.assertEquals(selectedActiveOption, productsPage.sortOptionsArrayList().get(i));		
 			if (i == 0 || i == 1) {
-				ArrayList<String> sortedArrayList = productsPage.testSwitch(i);
+				ArrayList<String> sortedArrayList = productsPage.sortStringArrayList(i);
 				int arrayListSize = sortedArrayList.size();
 				for (int j = 0; j < arrayListSize; j++) {
-					System.out.println(productsPage.productNameElements.get(j).getText());
-					System.out.println(sortedArrayList.get(j));
 					softAssert.assertEquals(productsPage.productNameElements.get(j).getText(), sortedArrayList.get(j));
 				}
-				System.out.println("\n");
 			} else if (i == 2 || i == 3) {
-				ArrayList<Double> sortedArrayList = productsPage.testSwitch2(i);
-				for (Double teString : sortedArrayList) {
-					System.out.println(teString);
-				}
+				ArrayList<Double> sortedArrayList = productsPage.sortDoubleArrayList(i);
 				int arrayListSize = sortedArrayList.size();
 				for (int j = 0; j < arrayListSize; j++) {
 					String listOfElements = productsPage.productPriceElements.get(j).getText().replace("$", "");
 					Double convertListToDouble = Double.parseDouble(listOfElements);
-					System.out.println("testListOfElements = " + convertListToDouble);
-					System.out.println("testArrayListOfPrices = " + sortedArrayList.get(j));
 					softAssert.assertEquals(convertListToDouble, sortedArrayList.get(j));
 				}
-				System.out.println("\n");
 			}
 		}
 		softAssert.assertAll();

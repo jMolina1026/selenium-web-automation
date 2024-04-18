@@ -144,7 +144,11 @@ public class ProductsPage extends BasePage{
 		return getActiveSelectedOptionText(sortContainerElement);
 	}
 	
-	
+	/**
+	 * Sort the array list from a Map into ascending order
+	 * @param map - Map of type Map<String, String>
+	 * @return - ArrayList<String> of type 
+	 */
     public ArrayList<String> sortListAscendingOrder(Map<String, String> map) {
     	ArrayList<String> arrayList = new ArrayList<String>();
     	arrayList.addAll(map.values());
@@ -152,6 +156,11 @@ public class ProductsPage extends BasePage{
     	return arrayList;
     }
     
+	/**
+	 * Sort the array list from a Map into descending order
+	 * @param map - Map of type Map<String, String>
+	 * @return - ArrayList<String> of type 
+	 */
     public ArrayList<String> sortListDescendingOrder(Map<String, String> map) {
     	ArrayList<String> arrayList = new ArrayList<String>();
     	arrayList.addAll(map.values());
@@ -159,16 +168,31 @@ public class ProductsPage extends BasePage{
     	return arrayList;
     }
     
+	/**
+	 * Sort the array list from a Map into ascending order
+	 * @param doubleArrayList - ArrayList of type Double
+	 * @return - ArrayList<Double> of type 
+	 */
     public ArrayList<Double> sortListAscendingOrder(ArrayList<Double> doubleArrayList) {
     	Collections.sort(doubleArrayList);
     	return doubleArrayList;
     }
     
+	/**
+	 * Sort the array list from a Map into descending order
+	 * @param doubleArrayList - ArrayList of type Double
+	 * @return - ArrayList<Double> of type 
+	 */
     public ArrayList<Double> sortListDescendingOrder(ArrayList<Double> doubleArrayList) {
     	Collections.sort(doubleArrayList, Collections.reverseOrder());
     	return doubleArrayList;
     }
     
+	/**
+	 * Creates an ArrayList type Double from a Map
+	 * @param map - Map of type Map<String, String>
+	 * @return - ArrayList<Double> of type 
+	 */
     public ArrayList<Double> createArrayListTypeDoubleFromMap(Map<String, String> map) {
     	ArrayList<Double> doubleArrayList = new ArrayList<Double>();
 		for (String stringMap : map.values()) {
@@ -178,9 +202,14 @@ public class ProductsPage extends BasePage{
     	return doubleArrayList;
     }
     
-    public ArrayList<String> testSwitch(int number) {
+    /**
+     * Selects to sort by Ascend or Descend order
+     * @param index - position for current element in the list
+     * @return - sorted ArrayList<String>
+     */
+    public ArrayList<String> sortStringArrayList(int index) {
     	ArrayList<String> arrayList = null;
-    	switch (number) {
+    	switch (index) {
 		case 0:
 			arrayList = sortListAscendingOrder(productMap.productNameMap);
 			break;
@@ -188,16 +217,21 @@ public class ProductsPage extends BasePage{
 			arrayList = sortListDescendingOrder(productMap.productNameMap);
 			break;
 		default:
-			throw new IllegalArgumentException("Unexpected value: " + number);
+			throw new IllegalArgumentException("Unexpected value: " + index);
 		}
     	
     	return arrayList;
     }
     
-    public ArrayList<Double> testSwitch2(int number) {
+    /**
+     * Selects to sort by Ascend or Descend order
+     * @param index - position for current element in the list
+     * @return - sorted ArrayList<Double>
+     */
+    public ArrayList<Double> sortDoubleArrayList(int index) {
 		ArrayList<Double> doubleArrayList = createArrayListTypeDoubleFromMap(productMap.productPriceMap);
 		ArrayList<Double> arrayList = null;
-    	switch (number) {
+    	switch (index) {
 		case 2:
 			arrayList = sortListAscendingOrder(doubleArrayList);
 			break;
@@ -205,7 +239,7 @@ public class ProductsPage extends BasePage{
 			arrayList = sortListDescendingOrder(doubleArrayList);
 			break;
 		default:
-			throw new IllegalArgumentException("Unexpected value: " + number);
+			throw new IllegalArgumentException("Unexpected value: " + index);
 		}
     	
     	return arrayList;
