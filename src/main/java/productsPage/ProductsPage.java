@@ -177,7 +177,39 @@ public class ProductsPage extends BasePage{
 		}
     	return doubleArrayList;
     }
-	
+    
+    public ArrayList<String> testSwitch(int number) {
+    	ArrayList<String> arrayList = null;
+    	switch (number) {
+		case 0:
+			arrayList = sortListAscendingOrder(productMap.productNameMap);
+			break;
+		case 1:
+			arrayList = sortListDescendingOrder(productMap.productNameMap);
+			break;
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + number);
+		}
+    	
+    	return arrayList;
+    }
+    
+    public ArrayList<Double> testSwitch2(int number) {
+		ArrayList<Double> doubleArrayList = createArrayListTypeDoubleFromMap(productMap.productPriceMap);
+		ArrayList<Double> arrayList = null;
+    	switch (number) {
+		case 2:
+			arrayList = sortListAscendingOrder(doubleArrayList);
+			break;
+		case 3:
+			arrayList = sortListDescendingOrder(doubleArrayList);
+			break;
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + number);
+		}
+    	
+    	return arrayList;
+    }
 	
 // -----------------------------------------------------------------------------------------	
 	/**

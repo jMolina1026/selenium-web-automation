@@ -92,12 +92,7 @@ public class ProductTest extends SeleniumWebDriver {
 			System.out.println(selectedActiveOption);
 			softAssert.assertEquals(selectedActiveOption, productsPage.sortOptionsArrayList().get(i));		
 			if (i == 0 || i == 1) {
-				ArrayList<String> sortedArrayList = null;
-				if (i == 0) {
-					sortedArrayList = productsPage.sortListAscendingOrder(productMap.productNameMap);
-				} else if (i == 1) {
-					sortedArrayList = productsPage.sortListDescendingOrder(productMap.productNameMap);
-				}
+				ArrayList<String> sortedArrayList = productsPage.testSwitch(i);
 				int arrayListSize = sortedArrayList.size();
 				for (int j = 0; j < arrayListSize; j++) {
 					System.out.println(productsPage.productNameElements.get(j).getText());
@@ -106,13 +101,7 @@ public class ProductTest extends SeleniumWebDriver {
 				}
 				System.out.println("\n");
 			} else if (i == 2 || i == 3) {
-				ArrayList<Double> doubleArrayList = productsPage.createArrayListTypeDoubleFromMap(productMap.productPriceMap);
-				ArrayList<Double> sortedArrayList = null;
-				if (i == 2) {
-					sortedArrayList = productsPage.sortListAscendingOrder(doubleArrayList);
-				} else if (i == 3) {
-					sortedArrayList = productsPage.sortListDescendingOrder(doubleArrayList);
-				}
+				ArrayList<Double> sortedArrayList = productsPage.testSwitch2(i);
 				for (Double teString : sortedArrayList) {
 					System.out.println(teString);
 				}
