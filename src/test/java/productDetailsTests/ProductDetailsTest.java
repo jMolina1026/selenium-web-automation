@@ -30,7 +30,7 @@ public class ProductDetailsTest extends SeleniumWebDriver {
 	@Test(priority = 1, description = "Verfiy the Product Details Page", groups = {"All", "Sanity", "productDetailsSanity"})
 	@Story ("Verify the Product Details Page")
 	@Description ("The product Details page contains the selected items details")
-	public void verifyProductPageTest() {
+	public void verifyProductDetailsPageTest() {
 		List<WebElement> productNameElementsList = productDetailsPage.productNameElements;
 		int elementsLength = productNameElementsList.size() - 1;
 		int randomIndex = productDetailsPage.getRandomNumber(0, elementsLength);
@@ -55,6 +55,35 @@ public class ProductDetailsTest extends SeleniumWebDriver {
 		
 		softAssert.assertTrue(productDetailsPage.isProductDetailsElementPresent(productDetailsPage.productAddToCartElement));
 		softAssert.assertEquals(productDetailsPage.getProductDetailsElementsText(productDetailsPage.productAddToCartElement), "Add to cart");
+		
+		softAssert.assertAll();
+	}
+	
+	@Test(priority = 2, description = "Verfiy the Product Details add to cart", groups = {"All", "Sanity", "productDetailsRegression"})
+	@Story ("Verify the Product Details Page")
+	@Description ("The product Detail page contains an 'Add to Cart'buttons, user should be able to add or remove via this button")
+	public void verifyProductDetailsAddToCartTest() {
+		List<WebElement> productNameElementsList = productDetailsPage.productNameElements;
+		int elementsLength = productNameElementsList.size() - 1;
+		int randomIndex = productDetailsPage.getRandomNumber(0, elementsLength);
+		String productsPageNameText = productsPage.getProductPageElementsText(productsPage.productNameElements.get(randomIndex));
+		productDetailsPage.clickProductTitleButton(productNameElementsList, randomIndex);
+				
+		softAssert.assertTrue(productDetailsPage.isProductDetailsElementPresent(productDetailsPage.backToProductsElement));
+		softAssert.assertEquals(productDetailsPage.getProductDetailsElementsText(productDetailsPage.backToProductsElement), "Back to products");
+		
+		softAssert.assertTrue(productDetailsPage.isProductDetailsElementPresent(productDetailsPage.productNameElement));
+		softAssert.assertEquals(productDetailsPage.getProductDetailsElementsText(productDetailsPage.productNameElement), productsPageNameText);
+		
+		productDetailsPage.clickAddToCartButton(productDetailsPage.productAddToCartElement);
+		softAssert.assertEquals(productDetailsPage.getProductDetailsElementsText(productDetailsPage.productRemoveFromCartElement), "Remove");
+		softAssert.assertTrue(productDetailsPage.doesProductPageElementExist(productDetailsPage.shoppingCartBadgeElements));
+		
+		productDetailsPage.clickRemoveFromCartButton(productDetailsPage.productRemoveFromCartElement);
+		softAssert.assertFalse(productDetailsPage.doesProductPageElementExist(productDetailsPage.shoppingCartBadgeElements));
+		
+		productDetailsPage.clickBackToProductsButton(productDetailsPage.backToProductsElement);
+		softAssert.assertEquals(productsPage.getProductPageElementsText(productsPage.productPageTitleElement), "Products");
 		
 		softAssert.assertAll();
 	}

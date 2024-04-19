@@ -28,6 +28,9 @@ public class ProductDetailsPage extends ProductsPage{
 	@FindBy(css = "button#add-to-cart")
 	public WebElement productAddToCartElement;
 	
+	@FindBy(css = "button#remove")
+	public WebElement productRemoveFromCartElement;
+	
 	@FindBy(css = "img.inventory_details_img")
 	public WebElement productImgElement;
 	
@@ -58,10 +61,26 @@ public class ProductDetailsPage extends ProductsPage{
     }
 	
 	/**
-	 * Clicks the Product Title Button button depending on the locator
+	 * Clicks the add to cart button depending on index
+	 * @param index - ordered position of the add to cart button
+	 */
+	public void clickAddToCartButton(WebElement element) {
+		clickTheElement(element);
+	}
+	
+	/**
+	 * Clicks the remove from cart button depending on index
+	 * @param index - ordered position of the remove from cart button
+	 */
+	public void clickRemoveFromCartButton(WebElement element) {
+		clickTheElement(element);
+	}
+
+	/**
+	 * Clicks the back to products button
 	 * @param element - locator used to identify the element
 	 */
-	public void clickProductTitleButton(List<WebElement> elements, int index) {
-		clickTheElement(elements.get(index));
+	public void clickBackToProductsButton(WebElement element) {
+		clickTheElement(element);
 	}
 }
