@@ -1,7 +1,6 @@
 package productsPage;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -57,6 +56,9 @@ public class ProductsPage extends BasePage{
 	
 	@FindBys(@FindBy(css = "select.product_sort_container > option"))
 	private List<WebElement> sortOptionElements;
+	
+	@FindBy(css = "span.title")
+	public WebElement productPageTitleElement;
 	
 // --------------------------- METHODS ------------------------------------    
 	SoftAssert softAssert = new SoftAssert();
@@ -114,6 +116,14 @@ public class ProductsPage extends BasePage{
 	 */
 	public void clickRemoveFromCartButton(int index) {
 		clickTheElement(productRemoveButtonsElements.get(index));
+	}
+	
+	/**
+	 * Clicks the Product Title Button button depending on the locator
+	 * @param element - locator used to identify the element
+	 */
+	public void clickProductTitleButton(List<WebElement> elements, int index) {
+		clickTheElement(elements.get(index));
 	}
 	
 	/**
