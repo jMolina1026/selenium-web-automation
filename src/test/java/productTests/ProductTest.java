@@ -1,8 +1,6 @@
 package productTests;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -81,7 +79,7 @@ public class ProductTest extends SeleniumWebDriver {
 		softAssert.assertAll();
 	}
 	
-	@Test(priority = 4, description = "Verfiy the Product Sort Options", groups = {"All", "Sanity", "productRegressions"})
+	@Test(priority = 4, description = "Verfiy the Product Sort Options", groups = {"All", "Sanity", "productRegression"})
 	@Story ("Verify the Product Page")
 	@Description ("The product page contains the ability to sort, user should be able to sort alphanumerically")
 	public void verifyProductSortTest() {

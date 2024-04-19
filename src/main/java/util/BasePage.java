@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -235,6 +236,16 @@ public abstract class BasePage {
     	Select select = new Select(element);
     	String activeOption = getElementText(select.getFirstSelectedOption());
     	return activeOption;
+    }
+    
+    /**
+     * Method to return a random number including the numbers sent as lower and higher
+     * @param lower - lower part of the range
+     * @param higher - higher part of the range
+     * @return - random number
+     */
+    public int getRandomNumber(int lower, int higher){
+        return new Random().nextInt((higher + 1) - lower) + lower;
     }
 
 }

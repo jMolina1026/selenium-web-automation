@@ -14,6 +14,7 @@
       <class name="hamburgerMenuTests.HamburgerMenuTest"/>
       <class name="footerTests.FooterTest"/>
       <class name="productTests.ProductTest"></class>
+      <class name="productDetailsTests.ProductDetailsTest"></class>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
