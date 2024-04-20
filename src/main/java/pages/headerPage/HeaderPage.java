@@ -40,7 +40,7 @@ public class HeaderPage extends BasePage{
 //    private WebElement hscFilterElement;
     
     @FindBy(css = "div.header_secondary_container > span.title")
-    private WebElement hscTitleElement;
+    public WebElement hscTitleElement;
     
     @FindBy(css = "div.header_secondary_container select.product_sort_container")
     private WebElement hscFilterElement;

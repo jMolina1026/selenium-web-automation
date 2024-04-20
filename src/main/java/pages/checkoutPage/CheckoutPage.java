@@ -62,15 +62,42 @@ public class CheckoutPage extends BasePage {
 	}
 	
 	/**
-     * Returns text from one the footer field items
+     * Returns text from one of the Checkout elements
      * @param element - locator used to identify the element
-     * @return - products item text
+     * @return - checkout element text
      */
 	@Step("Get the Checkout Elements text")
 	@Attachment
     public String getCheckoutElementsText(WebElement element) {
     	return getElementText(element);
     }
+	
+	/**
+	 * Clicks the Continue Shopping button
+	 * @param element - locator used to identify the element
+	 */
+	@Step("Click the Continue Shopping button")
+	public void clickContinueShoppingButton(WebElement element) {
+		clickTheElement(element);
+	}
+	
+	/**
+	 * Clicks the Remove Product button
+	 * @param element - locator used to identify the element
+	 */
+	@Step("Click the Remove Product button")
+	public void clickRemoveProductButton(WebElement element) {
+		clickTheElement(element);
+	}
+	
+	/**
+	 * Clicks the Checkout button
+	 * @param element - locator used to identify the element
+	 */
+	@Step("Click the Checkout Product button")
+	public void clickCheckoutButton(WebElement element) {
+		clickTheElement(element);
+	}
 	
 // -------------------------- TestScript --------------------------------------	
 	public WebElement switchTest(int number) {

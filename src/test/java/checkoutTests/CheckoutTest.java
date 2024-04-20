@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Story;
+import pages.checkoutInfoPage.CheckoutInfoPage;
 import pages.checkoutPage.CheckoutPage;
 import pages.headerPage.HeaderPage;
 import productsPage.ProductsPage;
@@ -20,12 +21,14 @@ public class CheckoutTest extends SeleniumWebDriver{
 	CheckoutPage checkoutPage;
 	HeaderPage headerPage;
 	ProductsPage productsPage;
+	CheckoutInfoPage checkoutInfoPage;
 	@BeforeMethod (alwaysRun = true)
 	protected void testInitiation() {
 		//init 
 		checkoutPage = new CheckoutPage(driver);
 		headerPage = new HeaderPage(driver);
 		productsPage = new ProductsPage(driver);
+		checkoutInfoPage = new CheckoutInfoPage(driver);
 		//login
 		loginPage.login(userName, passWord);
 	}
@@ -36,13 +39,10 @@ public class CheckoutTest extends SeleniumWebDriver{
 	public void verifyCheckoutPageTest() {
 		List<WebElement> productATCElementsList = productsPage.productAddToCartButtonsElements;
 		int elementsLength = productATCElementsList.size() - 1;
-		System.out.println("This iteration elementsLength = " + (elementsLength + 1));
 		int randomIndex = checkoutPage.getRandomNumber(0, elementsLength);
-		System.out.println("This iteration randomIndex = " + randomIndex);
 		String productNameText = productsPage.getProductPageElementsText(productsPage.productNameElements.get(randomIndex));
 		String productDescText = productsPage.getProductPageElementsText(productsPage.productDescriptionElements.get(randomIndex));
 		String productPriceText = productsPage.getProductPageElementsText(productsPage.productPriceElements.get(randomIndex));
-		System.out.println("text = " + productNameText);
 		productsPage.clickAddToCartButton(randomIndex);
 		headerPage.clickShoppingCartButton();
 		
@@ -90,18 +90,32 @@ public class CheckoutTest extends SeleniumWebDriver{
 		for (int i = 0; i < countOfClicks; i++) {
 			List<WebElement> productATCElementsList = productsPage.productAddToCartButtonsElements;
 			int elementsLength = productATCElementsList.size() - 1;
-			System.out.println("This iteration elementsLength = " + (elementsLength + 1));
 			randomIndex = checkoutPage.getRandomNumber(0, elementsLength);
-			System.out.println("This iteration randomIndex = " + randomIndex);
 			text = productsPage.getProductPageElementsText(productsPage.productNameElements.get(randomIndex));
-			System.out.println("text = " + text);
 			stringArrayList.add(text);
 			productsPage.clickAddToCartButton(randomIndex);
 		}
+		softAssert.assertEquals(Integer.parseInt(productsPage.getProductPageElementsText(productsPage.shoppingCartBadgeElements.get(0))), countOfClicks);
 		
-		for (String arrayList : stringArrayList) {
-			System.out.println(arrayList);
-		}
+		headerPage.clickShoppingCartButton();
+		checkoutPage.waitExplicitlyForElement(checkoutPage.yourCartElement);
+		softAssert.assertEquals(checkoutPage.getCheckoutElementsText(checkoutPage.yourCartElement), "Your Cart");
+		
+		checkoutPage.clickContinueShoppingButton(checkoutPage.continueShoppingBtnElement);
+		checkoutPage.waitExplicitlyForElement(headerPage.hscTitleElement);
+		softAssert.assertEquals(headerPage.getSecondaryHeaderTitleText(), "Products");
+		
+		headerPage.clickShoppingCartButton();
+		checkoutPage.waitExplicitlyForElement(checkoutPage.yourCartElement);
+		softAssert.assertEquals(checkoutPage.getCheckoutElementsText(checkoutPage.yourCartElement), "Your Cart");
+		
+		checkoutPage.clickRemoveProductButton(checkoutPage.productRemoveFromCartElements.get(countOfClicks - 1));
+		softAssert.assertEquals(Integer.parseInt(productsPage.getProductPageElementsText(productsPage.shoppingCartBadgeElements.get(0))), checkoutPage.productNameElements.size(), "Shopping Cart badge should be equal");
+		
+		checkoutPage.clickCheckoutButton(checkoutPage.checkoutButtonElement);
+		checkoutPage.waitExplicitlyForElement(checkoutInfoPage.firstNameFieldElement);
+		softAssert.assertEquals(checkoutInfoPage.getCheckoutInfoElementsText(checkoutInfoPage.checkoutYourInfoTitleElement), "Checkout: Your Information");
+
 		softAssert.assertAll();
 	}
 }
