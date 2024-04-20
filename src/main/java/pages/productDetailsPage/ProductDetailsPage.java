@@ -1,7 +1,5 @@
 package pages.productDetailsPage;
 
-import java.util.List;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import productsPage.ProductsPage;
-import util.BasePage;
 
 public class ProductDetailsPage extends ProductsPage{
 	public ProductDetailsPage(WebDriver driver) {
@@ -64,6 +61,7 @@ public class ProductDetailsPage extends ProductsPage{
 	 * Clicks the add to cart button depending on index
 	 * @param index - ordered position of the add to cart button
 	 */
+	@Step("Click the Add To Cart Button")
 	public void clickAddToCartButton(WebElement element) {
 		clickTheElement(element);
 	}
@@ -72,6 +70,7 @@ public class ProductDetailsPage extends ProductsPage{
 	 * Clicks the remove from cart button depending on index
 	 * @param index - ordered position of the remove from cart button
 	 */
+	@Step("Click and remove items from the cart")
 	public void clickRemoveFromCartButton(WebElement element) {
 		clickTheElement(element);
 	}
@@ -80,6 +79,7 @@ public class ProductDetailsPage extends ProductsPage{
 	 * Clicks the back to products button
 	 * @param element - locator used to identify the element
 	 */
+	@Step("Click the back to products button")
 	public void clickBackToProductsButton(WebElement element) {
 		clickTheElement(element);
 	}
