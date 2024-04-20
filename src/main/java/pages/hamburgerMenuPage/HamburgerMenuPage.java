@@ -152,6 +152,8 @@ public class HamburgerMenuPage extends BasePage {
 	 * The badge will not exist in the DOM if no items are added to the cart
 	 * @return - False
 	 */
+	@Step("See if the badge exists when an item is added")
+	@Attachment
 	public boolean doesTheShoppingCartBadgeExist() {
 		return doesElementExist(badgeListElements);
 	}

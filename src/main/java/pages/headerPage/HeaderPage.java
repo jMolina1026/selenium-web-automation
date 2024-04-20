@@ -21,7 +21,7 @@ public class HeaderPage extends BasePage{
 	private WebElement burgerMenuElement;
 	
 	@FindBy(css = "a.shopping_cart_link")
-	private WebElement shoppingCartElement;
+	public WebElement shoppingCartElement;
 	
     @FindBy(css = "div.app_logo")
     private WebElement headerLogoElement;
@@ -124,5 +124,13 @@ public class HeaderPage extends BasePage{
     @Step ("Click the Hamburger Menu Button")
     public void clickHamburgerMenuButton() {
     	clickTheElement(burgerMenuElement);
+    }
+    
+    /**
+     * Clicks the Shopping Cart Button to enter open the menu
+     */
+    @Step ("Click the Shopping Cart Button")
+    public void clickShoppingCartButton() {
+    	clickTheElement(shoppingCartElement);
     }
 }

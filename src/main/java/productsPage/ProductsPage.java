@@ -61,7 +61,6 @@ public class ProductsPage extends BasePage{
 	public WebElement productPageTitleElement;
 	
 // --------------------------- METHODS ------------------------------------    
-	SoftAssert softAssert = new SoftAssert();
 	/**
 	 * Returns true or false depending on if the element is present
 	 * @return - TRUE, if the element is present
@@ -98,6 +97,8 @@ public class ProductsPage extends BasePage{
      * @param elements - locator used to identify multiple elements
      * @return - list of elements
 	 */
+	@Step("Count the amount of times an element from the product page appears")
+	@Attachment
 	public int countOfProductElements(List<WebElement> elements) {
 		return countOfElements(elements);
 	}
@@ -106,6 +107,7 @@ public class ProductsPage extends BasePage{
 	 * Clicks the add to cart button depending on index
 	 * @param index - ordered position of the add to cart button
 	 */
+	@Step("Click the Add To Cart button")
 	public void clickAddToCartButton(int index) {
 		clickTheElement(productAddToCartButtonsElements.get(index));
 	}
@@ -114,6 +116,7 @@ public class ProductsPage extends BasePage{
 	 * Clicks the remove from cart button depending on index
 	 * @param index - ordered position of the remove from cart button
 	 */
+	@Step("Click and remove the item from the cart")
 	public void clickRemoveFromCartButton(int index) {
 		clickTheElement(productRemoveButtonsElements.get(index));
 	}
@@ -122,6 +125,7 @@ public class ProductsPage extends BasePage{
 	 * Clicks the Product Title Button button depending on the locator
 	 * @param element - locator used to identify the element
 	 */
+	@Step("Click the Name of the product to navigate to page details")
 	public void clickProductTitleButton(List<WebElement> elements, int index) {
 		clickTheElement(elements.get(index));
 	}
@@ -130,6 +134,8 @@ public class ProductsPage extends BasePage{
      * (Select/Option only) A list of elements to be set within an Array List
 	 * @return - ArrayList containing all available options from select dropdown
 	 */
+	@Step("Collect all available items from the Filter")
+	@Attachment
 	public ArrayList<String> sortOptionsArrayList() {
 		return selectOptionsArrayList(sortContainerElement);
 	}
@@ -139,6 +145,7 @@ public class ProductsPage extends BasePage{
      * In this case are the text options are selected from an arraylist
 	 * @param index - position of the sort option
 	 */
+	@Step("Select a filter option by text")
 	public void selectSortOptionByText(int index) {
 		ArrayList<String> sortTextArrayList = sortOptionsArrayList();
 		String sortOptionText = sortTextArrayList.get(index);
@@ -150,6 +157,8 @@ public class ProductsPage extends BasePage{
      * be obtained to get its text
      * @return - currently active element
 	 */
+	@Step("Get the active/selected option text")
+	@Attachment
 	public String getActiveSortOptionText() {
 		return getActiveSelectedOptionText(sortContainerElement);
 	}
@@ -159,6 +168,8 @@ public class ProductsPage extends BasePage{
 	 * @param map - Map of type Map<String, String>
 	 * @return - ArrayList<String> of type 
 	 */
+	@Step("Sort the Filter options text into Ascending order")
+	@Attachment
     public ArrayList<String> sortListAscendingOrder(Map<String, String> map) {
     	ArrayList<String> arrayList = new ArrayList<String>();
     	arrayList.addAll(map.values());
@@ -171,6 +182,8 @@ public class ProductsPage extends BasePage{
 	 * @param map - Map of type Map<String, String>
 	 * @return - ArrayList<String> of type 
 	 */
+	@Step("Sort the Filter options text into Descending order")
+	@Attachment
     public ArrayList<String> sortListDescendingOrder(Map<String, String> map) {
     	ArrayList<String> arrayList = new ArrayList<String>();
     	arrayList.addAll(map.values());
@@ -183,6 +196,8 @@ public class ProductsPage extends BasePage{
 	 * @param doubleArrayList - ArrayList of type Double
 	 * @return - ArrayList<Double> of type 
 	 */
+	@Step("Sort the Filter options text into Ascending order")
+	@Attachment
     public ArrayList<Double> sortListAscendingOrder(ArrayList<Double> doubleArrayList) {
     	Collections.sort(doubleArrayList);
     	return doubleArrayList;
@@ -193,6 +208,8 @@ public class ProductsPage extends BasePage{
 	 * @param doubleArrayList - ArrayList of type Double
 	 * @return - ArrayList<Double> of type 
 	 */
+	@Step("Sort the Filter options text into Descending order")
+	@Attachment
     public ArrayList<Double> sortListDescendingOrder(ArrayList<Double> doubleArrayList) {
     	Collections.sort(doubleArrayList, Collections.reverseOrder());
     	return doubleArrayList;
@@ -203,6 +220,8 @@ public class ProductsPage extends BasePage{
 	 * @param map - Map of type Map<String, String>
 	 * @return - ArrayList<Double> of type 
 	 */
+	@Step("Create a List from an existing map")
+	@Attachment
     public ArrayList<Double> createArrayListTypeDoubleFromMap(Map<String, String> map) {
     	ArrayList<Double> doubleArrayList = new ArrayList<Double>();
 		for (String stringMap : map.values()) {
@@ -217,6 +236,8 @@ public class ProductsPage extends BasePage{
      * @param index - position for current element in the list
      * @return - sorted ArrayList<String>
      */
+	@Step("Sort the Filter options text into Ascending or Descending order")
+	@Attachment
     public ArrayList<String> sortStringArrayList(int index) {
     	ArrayList<String> arrayList = null;
     	switch (index) {
@@ -238,6 +259,8 @@ public class ProductsPage extends BasePage{
      * @param index - position for current element in the list
      * @return - sorted ArrayList<Double>
      */
+	@Step("Sort the Filter options text into Ascending or Descending order")
+	@Attachment
     public ArrayList<Double> sortDoubleArrayList(int index) {
 		ArrayList<Double> doubleArrayList = createArrayListTypeDoubleFromMap(productMap.productPriceMap);
 		ArrayList<Double> arrayList = null;
@@ -256,6 +279,7 @@ public class ProductsPage extends BasePage{
     }
 	
 // -----------------------------------------------------------------------------------------	
+	SoftAssert softAssert = new SoftAssert();
 	/**
 	 * Checks to see if all elements are present on the products page
 	 * uses two for loops to accomplish this
