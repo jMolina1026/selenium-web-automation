@@ -1,5 +1,8 @@
 package util;
 
+import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +26,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
+
+import org.apache.commons.io.IOUtils;
 
 public abstract class BasePage {
     protected final WebDriver driver;
@@ -247,5 +253,18 @@ public abstract class BasePage {
     public int getRandomNumber(int lower, int higher){
         return new Random().nextInt((higher + 1) - lower) + lower;
     }
+    
+    /**
+     * Work In Progress
+     * @param string
+     */
+//    public void allureVid(String string) {
+//        try {
+//            byte[] byteArr = IOUtils.toByteArray(new FileInputStream("src/test/resources/" + string + ".mp4"));
+//            Allure.addAttachment("attachment name", "video/mp4", new ByteArrayInputStream(byteArr), "mp4");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 }

@@ -82,7 +82,7 @@ public class CheckoutTest extends SeleniumWebDriver{
 	@Test(priority = 2, description = "Verfiy the Checkout Page", groups = {"All", "Sanity", "checkoutRegression"})
 	@Story ("Verify the Checkout Page")
 	@Description ("The checkout page contains the selected items that were added to the cart and that will be checked out")
-	public void verifyCheckoutProcessTest() {
+	public void verifyCheckoutProcessTest() throws Exception {
 		int countOfClicks = 3;
 		int randomIndex = 0;
 		String text = "";
