@@ -16,6 +16,7 @@
       <class name="productTests.ProductTest"></class>
       <class name="productDetailsTests.ProductDetailsTest"></class>
       <class name="checkoutTests.CheckoutTest"></class>
+      <class name="checkoutInfoTests.CheckoutInfoTest"></class>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
