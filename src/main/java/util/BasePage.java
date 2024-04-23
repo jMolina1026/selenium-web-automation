@@ -247,5 +247,17 @@ public abstract class BasePage {
     public int getRandomNumber(int lower, int higher){
         return new Random().nextInt((higher + 1) - lower) + lower;
     }
+    
+    /**
+     * Get the value of the elements attribute
+     * @param element - locator used to identify the element.
+     * @param string - attribute name
+     * @return - element attribute value
+     */
+    public String getElementAttribute(WebElement element, String string) {
+		String attributeValue = element.getAttribute(string);
+		return attributeValue;
+
+    }
 
 }
