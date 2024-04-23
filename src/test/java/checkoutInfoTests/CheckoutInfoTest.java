@@ -86,5 +86,24 @@ public class CheckoutInfoTest extends SeleniumWebDriver {
 		softAssert.assertEquals(finishPurchasePage.getFinishPurchaseElementsText(finishPurchasePage.finishPurchaseTitleElement), "Checkout: Overview");
 		softAssert.assertAll();
 	}
+	
+	@Test(priority = 3, description = "Verfiy the Checkout Info Page's error messages", groups = {"All", "Regression", "checkoutInfoRegression"})
+	@Story ("Verify the Checkout Info Page")
+	@Description ("The checkout Info page contains fields and error messages that appear when no input text is set")
+	public void verifyCheckoutInfoErrorMessageTest() {
+		checkoutInfoPage.clickCheckoutInfoContinueButton();
+		softAssert.assertEquals(checkoutInfoPage.getCheckoutInfoElementsText(checkoutInfoPage.errorMessageElement), "Error: First Name is required");
+		checkoutInfoPage.typeTextIntoCheckoutInfoField(checkoutInfoPage.firstNameFieldElement, "John");
+		
+		checkoutInfoPage.clickCheckoutInfoContinueButton();
+		softAssert.assertEquals(checkoutInfoPage.getCheckoutInfoElementsText(checkoutInfoPage.errorMessageElement), "Error: Last Name is required");
+		checkoutInfoPage.typeTextIntoCheckoutInfoField(checkoutInfoPage.lastNameElement, "Tester");
+		
+		checkoutInfoPage.clickCheckoutInfoContinueButton();
+		softAssert.assertEquals(checkoutInfoPage.getCheckoutInfoElementsText(checkoutInfoPage.errorMessageElement), "Error: Postal Code is required");
+		checkoutInfoPage.typeTextIntoCheckoutInfoField(checkoutInfoPage.postalCodeElement, "91245");
+
+		softAssert.assertAll();
+	}
 
 }
