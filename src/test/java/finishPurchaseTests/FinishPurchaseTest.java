@@ -1,17 +1,14 @@
 package finishPurchaseTests;
 
-import static org.testng.Assert.assertEquals;
-
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.List;
 
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Story;
+import pages.checkoutCompletePage.CheckoutCompletePage;
 import pages.checkoutInfoPage.CheckoutInfoPage;
 import pages.checkoutPage.CheckoutPage;
 import pages.finishPurchasePage.FinishPurchasePage;
@@ -25,6 +22,7 @@ public class FinishPurchaseTest extends SeleniumWebDriver{
 	ProductsPage productsPage;
 	CheckoutInfoPage checkoutInfoPage;
 	FinishPurchasePage finishPurchasePage;
+	CheckoutCompletePage checkoutCompletePage;
 	ArrayList<ArrayList<String>> productsPageArrayList;
 	@BeforeMethod (alwaysRun = true)
 	protected void testInitiation() {
@@ -34,6 +32,7 @@ public class FinishPurchaseTest extends SeleniumWebDriver{
 		productsPage = new ProductsPage(driver);
 		checkoutInfoPage = new CheckoutInfoPage(driver);
 		finishPurchasePage = new FinishPurchasePage(driver);
+		checkoutCompletePage = new CheckoutCompletePage(driver);
 		//login
 		loginPage.login(userName, passWord);
 		
@@ -61,7 +60,7 @@ public class FinishPurchaseTest extends SeleniumWebDriver{
 	@Test(priority = 1, description = "Verfiy the Final Purchase Page", groups = {"All", "Sanity", "finalPurchaseSanity"})
 	@Story ("Verify the Final Purchase Page")
 	@Description ("The Final Purchase page contains the fields for final overview before checking out")
-	public void verifyCheckoutInfoPageTest() {
+	public void verifyFinalPurchasePageTest() {
 		softAssert.assertTrue(finishPurchasePage.isFinishPurchasePageElementPresent(finishPurchasePage.finishPurchaseTitleElement));
 		softAssert.assertEquals(finishPurchasePage.getFinishPurchaseElementsText(finishPurchasePage.finishPurchaseTitleElement), "Checkout: Overview");
 		
@@ -87,6 +86,26 @@ public class FinishPurchaseTest extends SeleniumWebDriver{
 			softAssert.assertEquals(finishPurchasePage.getFinishPurchaseElementsText(finishPurchasePage.summaryInfoElements.get(i)), 
 					finishPurchasePage.listOfFinishPurchaseAssertText(i, subTotalPrice, Double.parseDouble(tax), totalPrice));
 		}	
+		softAssert.assertAll();
+	}
+	
+	@Test(priority = 2, description = "Verfiy the Final Purchase Page and cancel the purchase", groups = {"All", "Regression", "finalPurchaseRegression"})
+	@Story ("Verify the Final Purchase Page")
+	@Description ("The Final Purchase page contains the fields for canceling the purchase")
+	public void verifyCancelFinalPurchaseTest() {
+		finishPurchasePage.clickFinishPurchaseCancelButton();
+		finishPurchasePage.waitExplicitlyForElement(productsPage.sortContainerElement);
+		softAssert.assertEquals(productsPage.getProductPageElementsText(productsPage.productPageTitleElement), "Products");
+		softAssert.assertAll();
+	}
+	
+	@Test(priority = 3, description = "Verfiy the Final Purchase Page and finish the purchase", groups = {"All", "Regression", "finalPurchaseRegressions"})
+	@Story ("Verify the Final Purchase Page")
+	@Description ("The Final Purchase page contains the fields for completing the purchase")
+	public void verifyCompleteCheckoutTest() {
+		finishPurchasePage.clickFinishPurchaseFinishButton();
+		finishPurchasePage.waitExplicitlyForElement(checkoutCompletePage.thanksForOrderElement);
+		softAssert.assertEquals(checkoutCompletePage.getCheckoutCompleteElementsText(checkoutCompletePage.checkoutCompleteTitlElement), "Checkout: Complete!");
 		softAssert.assertAll();
 	}
 }

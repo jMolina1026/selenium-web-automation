@@ -43,7 +43,7 @@ public class FinishPurchasePage extends BasePage {
 	public WebElement cancelOrderElement;
 	
 	@FindBy(css = "button#finish")
-	public WebElement fiinishOrderElement;
+	public WebElement finishOrderElement;
 	
 // --------------------------- METHODS ------------------------------------    
 
@@ -66,6 +66,24 @@ public class FinishPurchasePage extends BasePage {
 	@Attachment
 	public boolean isFinishPurchasePageElementPresent(WebElement element) {
 		return isElementPresent(element);
+	}
+	
+	/**
+	 * Clicks the Finish Purchase Cancel button
+	 * @param element - locator used to identify the element
+	 */
+	@Step("Click the Finish Purchase Cancel button")
+	public void clickFinishPurchaseCancelButton() {
+		clickTheElement(cancelOrderElement);
+	}
+	
+	/**
+	 * Clicks the Finish Purchase Finish button
+	 * @param element - locator used to identify the element
+	 */
+	@Step("Click the Finish Purchase Finish button")
+	public void clickFinishPurchaseFinishButton() {
+		clickTheElement(finishOrderElement);
 	}
 	
 	
