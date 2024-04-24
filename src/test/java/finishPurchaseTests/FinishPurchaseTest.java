@@ -99,7 +99,7 @@ public class FinishPurchaseTest extends SeleniumWebDriver{
 		softAssert.assertAll();
 	}
 	
-	@Test(priority = 3, description = "Verfiy the Final Purchase Page and finish the purchase", groups = {"All", "Regression", "finalPurchaseRegressions"})
+	@Test(priority = 3, description = "Verfiy the Final Purchase Page and finish the purchase", groups = {"All", "Regression", "finalPurchaseRegression"})
 	@Story ("Verify the Final Purchase Page")
 	@Description ("The Final Purchase page contains the fields for completing the purchase")
 	public void verifyCompleteCheckoutTest() {
