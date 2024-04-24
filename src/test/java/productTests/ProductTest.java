@@ -55,7 +55,7 @@ public class ProductTest extends SeleniumWebDriver {
 		productsPage.areTheProductPageElementsPresent();
 	}
 	
-	@Test(priority = 3, description = "Verfiy the Product Add to Cart action", groups = {"All", "Sanity", "productRegression"})
+	@Test(priority = 3, description = "Verfiy the Product Add to Cart action", groups = {"All", "Regression", "productRegression"})
 	@Story ("Verify the Product Page")
 	@Description ("The product page contains 'Add to Cart'buttons, user should be able to add or remove via this button")
 	public void verifyProductAddToCartTest() {
