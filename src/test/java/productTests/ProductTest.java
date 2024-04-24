@@ -79,7 +79,7 @@ public class ProductTest extends SeleniumWebDriver {
 		softAssert.assertAll();
 	}
 	
-	@Test(priority = 4, description = "Verfiy the Product Sort Options", groups = {"All", "Sanity", "productRegression"})
+	@Test(priority = 4, description = "Verfiy the Product Sort Options", groups = {"All", "Regression", "productRegression"})
 	@Story ("Verify the Product Page")
 	@Description ("The product page contains the ability to sort, user should be able to sort alphanumerically")
 	public void verifyProductSortTest() {

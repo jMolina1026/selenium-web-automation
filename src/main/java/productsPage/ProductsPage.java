@@ -278,6 +278,67 @@ public class ProductsPage extends BasePage{
     	return arrayList;
     }
 	
+	/**
+	 * Used to make an arrayList with arrayLists for each position, works for comparing
+	 * the name, description and price of a product.  For assertion purposes.
+	 * @return - ArrayList of type ArrayList(String)
+	 */
+	public ArrayList<ArrayList<String>> getProductsPageTextArrayList() {
+		ArrayList<String> productNameArrayList = new ArrayList<String>();
+		ArrayList<String> productDescArrayList = new ArrayList<String>();
+		ArrayList<String> productPriceArrayList = new ArrayList<String>();
+		
+		ArrayList<ArrayList<String>> productArrayList1 = new ArrayList<>();
+		for (int i = 0; i < 3; i ++) {
+			if (i == 0) {
+				for (int j = 0; j < 3; j++) {
+					String productText = getProductsPageText(j, i);
+					productNameArrayList.add(productText);
+				}
+			} else if (i == 1) {
+				for (int k = 0; k < 3; k++) {
+					String productText = getProductsPageText(k, i);
+					productDescArrayList.add(productText);
+				}
+			} else if (i == 2) {
+				for (int a = 0; a < 3; a++) {
+					String productText = getProductsPageText(a, i);
+					productPriceArrayList.add(productText);
+				}
+			} 
+		}
+
+		productArrayList1.add(productNameArrayList);
+		productArrayList1.add(productDescArrayList);
+		productArrayList1.add(productPriceArrayList);
+		return productArrayList1;
+	}
+	
+	/**
+	 * Gets the text from the products listed, includes the Name, Description
+	 * and Price of the item
+	 * @param index - position in which product to obtain the required information
+	 * @param number - case number to select which element to get text from
+	 * @return - String for either Name, Description or Price
+	 */
+	public String getProductsPageText(int index, int number) {
+		String product;
+		switch (number) {
+		case 0: 
+			product = getProductPageElementsText(productNameElements.get(index));
+			break;
+		case 1: 
+			product = getProductPageElementsText(productDescriptionElements.get(index));
+			break;
+		case 2: 
+			product = getProductPageElementsText(productPriceElements.get(index));
+			break;
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + number);
+		}
+		return product;
+	}
+	
 // -----------------------------------------------------------------------------------------	
 	SoftAssert softAssert = new SoftAssert();
 	/**

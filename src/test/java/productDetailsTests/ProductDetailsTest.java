@@ -59,7 +59,7 @@ public class ProductDetailsTest extends SeleniumWebDriver {
 		softAssert.assertAll();
 	}
 	
-	@Test(priority = 2, description = "Verfiy the Product Details add to cart", groups = {"All", "Sanity", "productDetailsRegression"})
+	@Test(priority = 2, description = "Verfiy the Product Details add to cart", groups = {"All", "Regression", "productDetailsRegression"})
 	@Story ("Verify the Product Details Page")
 	@Description ("The product Detail page contains an 'Add to Cart'buttons, user should be able to add or remove via this button")
 	public void verifyProductDetailsAddToCartTest() {
