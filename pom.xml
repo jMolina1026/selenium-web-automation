@@ -7,14 +7,15 @@
   
   <!-- Define the version of AspectJ -->
   <properties>
-	  <selenium-java.version>4.19.1</selenium-java.version>
-	  <testng.version>7.9.0</testng.version>
+	  <selenium-java.version>4.25.0</selenium-java.version>
+	  <testng.version>7.10.2</testng.version>
 	  <slf4j-api.version>2.0.12</slf4j-api.version>
 	  <slf4j-simple.version>2.0.12</slf4j-simple.version>
 	  <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
-	  <allure-testng.version>2.25.0</allure-testng.version>
-	  <allure-bom.version>2.25.0</allure-bom.version>
-	  <allure-version.version>2.12.0</allure-version.version>
+	  <allure-testng.version>2.29.0</allure-testng.version>
+	  <allure-bom.version>2.29.0</allure-bom.version>
+	  <allure-attachments.version>2.29.0</allure-attachments.version>
+	  <allure-version.version>2.14.0</allure-version.version>
 	  <maven-compiler-plugin.version>3.12.1</maven-compiler-plugin.version>
 	  <aspectj.version>1.9.20.1</aspectj.version>
   </properties>
@@ -55,7 +56,8 @@
 		    <artifactId>allure-testng</artifactId>
 		    <version>${allure-testng.version}</version>
 		</dependency>
-		
+
+		<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-bom -->
 		<dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-bom</artifactId>
@@ -67,7 +69,7 @@
 		<dependency>
 		    <groupId>io.qameta.allure</groupId>
 		    <artifactId>allure-attachments</artifactId>
-		    <version>2.25.0</version>
+		    <version>${allure-attachments.version}</version>
 		</dependency>
 
 	</dependencies>
@@ -121,7 +123,8 @@
 	<reporting>
         <excludeDefaults>true</excludeDefaults>
         <plugins>
-            <plugin>
+			<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-maven -->
+			<plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
                 <version>${allure-version.version}</version>
