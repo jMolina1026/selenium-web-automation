@@ -346,8 +346,10 @@ public class ProductsPage extends BasePage{
 	 * uses two for loops to accomplish this
 	 */
 	public void areTheProductPageElementsPresent() {
-		List<List<WebElement>> listOfElements = List.of(productImgElements, productNameElements);
-		boolean isPresent = false;
+		List<List<WebElement>> listOfElements = new ArrayList<>();
+      listOfElements.add(productImgElements);
+      listOfElements.add(productNameElements);
+      boolean isPresent = false;
 		for (int i = 0; i < listOfElements.size(); i++) {
 			for (int j = 0; j < listOfElements.get(i).size(); j++) {
 				isPresent = isProductPageElementPresent(listOfElements.get(i).get(j));
