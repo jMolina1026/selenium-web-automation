@@ -21,6 +21,7 @@ public class ProductTest extends SeleniumWebDriver {
 		productMap = new ProductsPageMap();
 		//login
 		loginPage.login(userName, passWord);
+		//gjhgjhg
 	}
 	
 	
