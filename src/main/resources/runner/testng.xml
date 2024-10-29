@@ -13,12 +13,12 @@
       <class name="headerPageTests.HeaderPageTest"/>
       <class name="hamburgerMenuTests.HamburgerMenuTest"/>
       <class name="footerTests.FooterTest"/>
-      <class name="productTests.ProductTest"></class>
-      <class name="productDetailsTests.ProductDetailsTest"></class>
-      <class name="checkoutTests.CheckoutTest"></class>
-      <class name="checkoutInfoTests.CheckoutInfoTest"></class>
-      <class name="finishPurchaseTests.FinishPurchaseTest"></class>
-      <class name="completeCheckoutTests.CompleteCheckoutTest"></class>
+      <class name="productTests.ProductTest"/>
+      <class name="productDetailsTests.ProductDetailsTest"/>
+      <class name="checkoutTests.CheckoutTest"/>
+      <class name="checkoutInfoTests.CheckoutInfoTest"/>
+      <class name="finishPurchaseTests.FinishPurchaseTest"/>
+      <class name="completeCheckoutTests.CompleteCheckoutTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

@@ -9,8 +9,8 @@ import org.testng.annotations.Test;
 import io.qameta.allure.Description;
 import io.qameta.allure.Story;
 import pages.productDetailsPage.ProductDetailsPage;
-import productsPage.ProductsPage;
-import productsPage.ProductsPageMap;
+import pages.productsPage.ProductsPage;
+import pages.productsPage.ProductsPageMap;
 import util.SeleniumWebDriver;
 
 public class ProductDetailsTest extends SeleniumWebDriver {

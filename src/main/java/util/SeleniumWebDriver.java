@@ -1,16 +1,12 @@
 package util;
 
-import java.text.MessageFormat;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.JavascriptExecutor;
 
-//import org.openqa.selenium.Dimension;
-
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.bidi.script.Message;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -21,8 +17,6 @@ import org.testng.asserts.SoftAssert;
 
 import io.qameta.allure.Attachment;
 
-import org.testng.Assert;
-
 import pages.LoginPage.LoginPage;
 
 public abstract class SeleniumWebDriver {
@@ -32,24 +26,17 @@ public abstract class SeleniumWebDriver {
 	protected ChromeOptions chromeOptions = new ChromeOptions();
     protected String browserType;
     protected SoftAssert softAssert;
-    public Assert hardAssert;
-    
-//	String browserDriver = System.getProperty("driverName");
-//	String runType = System.getProperty("headedOrHeadless");
-//
-//    public String userName = System.getProperty("userName");
-//    public String passWord = System.getProperty("passWord");
-    
+
     public String getPropertyKey(String key) {
     	return propertyReader.getValue(key);
     }
     
-	String browserDriver = System.getProperty(getPropertyKey(PropertyKey.DRIVER_NAME));
-	String runType = System.getProperty(getPropertyKey(PropertyKey.HEADED_OR_HEADLESS));
+	String browserDriver = System.getProperty(PropertyKey.DRIVER_NAME);
+	String runType = System.getProperty(PropertyKey.HEADED_OR_HEADLESS);
 	String userAgentChromeVersion = System.getProperty(PropertyKey.USER_AGENT_CHROME_VERSION);
 
-    public String userName = System.getProperty(getPropertyKey(PropertyKey.USERNAME));
-    public String passWord = System.getProperty(getPropertyKey(PropertyKey.PASSWORD));
+    public String userName = System.getProperty(PropertyKey.USERNAME);
+    public String passWord = System.getProperty(PropertyKey.PASSWORD);
 
     @BeforeMethod (alwaysRun = true)
     public void init() throws Exception{
@@ -60,7 +47,7 @@ public abstract class SeleniumWebDriver {
                 break;
             case "chromeDriver":
             	chromeOptions.addArguments(getPropertyKey(PropertyKey.WINDOW_SIZE));
-            	if (runType.equals(getPropertyKey(PropertyKey.RUN_HEADELESS_MODE))) {
+            	if (runType.equals(getPropertyKey(PropertyKey.RUN_HEADLESS_MODE))) {
                 	chromeOptions.addArguments(runType);
                 	chromeOptions.addArguments(getPropertyKey(PropertyKey.USER_AGENT_CHROME).concat(userAgentChromeVersion));
                     driver = new ChromeDriver(chromeOptions);
@@ -74,7 +61,7 @@ public abstract class SeleniumWebDriver {
                 browserType = "safari";
                 break;
 			default:
-				throw new Exception("None of the programmed or available drivers are being used, check that -Dbrowser has the correct value assigned");
+				throw new Exception("None of the programmed or available drivers are being used, check that -DdriverName has the correct value assigned");
         }
         
         loginPage = new LoginPage(driver);
@@ -102,7 +89,7 @@ public abstract class SeleniumWebDriver {
     }
     
     /**
-     * Wait for an specific amount of seconds
+     * Wait for a specific amount of seconds
      * @param seconds - time desired to wait
      */
     public void waitSeconds(double seconds){
@@ -115,15 +102,13 @@ public abstract class SeleniumWebDriver {
     }
     
     public String getUserAgent() {
-		String userAgentString = (String) ((JavascriptExecutor) driver).executeScript("return navigator.userAgent;");
-//		System.out.println(userAgentString);
-		return userAgentString;
+        // System.out.println(userAgentString);
+		return (String) ((JavascriptExecutor) driver).executeScript("return navigator.userAgent;");
 	}
 
 	public String replaceUserAgent() {
-		String newUserAgent = getUserAgent().replace("Headless", "");
-//		System.out.println(newUserAgent);
-		return newUserAgent;
+        // System.out.println(newUserAgent);
+		return getUserAgent().replace("Headless", "");
 	}
 
     @AfterMethod (alwaysRun = true)
@@ -136,6 +121,4 @@ public abstract class SeleniumWebDriver {
             driver.quit();
         }
     }
-
-
 }

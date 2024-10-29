@@ -3,3 +3,5 @@ target/
 allure-report/
 test-output/
 allure-results/
+.idea/
+.DS_Store

@@ -7,8 +7,8 @@ import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Story;
-import productsPage.ProductsPage;
-import productsPage.ProductsPageMap;
+import pages.productsPage.ProductsPage;
+import pages.productsPage.ProductsPageMap;
 import util.SeleniumWebDriver;
 
 public class ProductTest extends SeleniumWebDriver {
@@ -21,10 +21,11 @@ public class ProductTest extends SeleniumWebDriver {
 		productMap = new ProductsPageMap();
 		//login
 		loginPage.login(userName, passWord);
+		//gjhgjhg
 	}
 	
 	
-	@Test(priority = 1, description = "Verfiy the Product Page", groups = {"All", "Sanity", "productSanity"})
+	@Test(priority = 1, description = "Verify the Product Page", groups = {"All", "Sanity", "productSanity"})
 	@Story ("Verify the Product Page")
 	@Description ("The product page contains all available items for sale")
 	public void verifyProductPageTest() {
@@ -48,16 +49,16 @@ public class ProductTest extends SeleniumWebDriver {
 		softAssert.assertAll();
 	}
 	
-	@Test(priority = 2, description = "Verfiy the Product Page V2", groups = {"All", "SanityV2", "productSanityV2"})
+	@Test(priority = 2, description = "Verify the Product Page V2", groups = {"All", "SanityV2", "productSanityV2"})
 	@Story ("Verify the Product Page - V2")
 	@Description ("The product page contains all available items for sale - V2")
 	public void verifyProductPageV2Test() {
 		productsPage.areTheProductPageElementsPresent();
 	}
 	
-	@Test(priority = 3, description = "Verfiy the Product Add to Cart action", groups = {"All", "Regression", "productRegression"})
+	@Test(priority = 3, description = "Verify the Product Add to Cart action", groups = {"All", "Regression", "productRegression"})
 	@Story ("Verify the Product Page")
-	@Description ("The product page contains 'Add to Cart'buttons, user should be able to add or remove via this button")
+	@Description ("The product page contains 'Add to Cart' buttons, user should be able to add or remove via this button")
 	public void verifyProductAddToCartTest() {
 		int addToCartlength = productsPage.productAddToCartButtonsElements.size();
 		for (int i = 0; i < addToCartlength; i++) {
@@ -79,7 +80,7 @@ public class ProductTest extends SeleniumWebDriver {
 		softAssert.assertAll();
 	}
 	
-	@Test(priority = 4, description = "Verfiy the Product Sort Options", groups = {"All", "Regression", "productRegression"})
+	@Test(priority = 4, description = "Verify the Product Sort Options", groups = {"All", "Regression", "productRegression"})
 	@Story ("Verify the Product Page")
 	@Description ("The product page contains the ability to sort, user should be able to sort alphanumerically")
 	public void verifyProductSortTest() {

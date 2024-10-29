@@ -1,4 +1,4 @@
-package productsPage;
+package pages.productsPage;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
-import productsPage.ProductsPage;
+import pages.productsPage.ProductsPage;
 
 public class ProductDetailsPage extends ProductsPage{
 	public ProductDetailsPage(WebDriver driver) {

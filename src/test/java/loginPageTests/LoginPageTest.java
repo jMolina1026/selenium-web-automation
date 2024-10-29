@@ -11,7 +11,7 @@ import util.SeleniumWebDriver;
 @Feature ("Swag Labs - Login Page")
 public class LoginPageTest extends SeleniumWebDriver implements LoginPageFinalVariables{
 
-	@Test(priority = 1, description = "Verfiy the Login Page", groups = {"All", "Sanity", "loginSanity"})
+	@Test(priority = 1, description = "Verify the Login Page", groups = {"All", "Sanity", "loginSanity"})
 	@Story ("Verify the login Page")
 	@Description ("The login password area displays a valid password")
 	public void verifyLoginPageTest() {
