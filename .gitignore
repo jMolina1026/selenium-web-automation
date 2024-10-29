@@ -3,3 +3,4 @@ target/
 allure-report/
 test-output/
 allure-results/
+.idea/

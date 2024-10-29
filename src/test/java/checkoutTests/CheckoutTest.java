@@ -14,7 +14,7 @@ import io.qameta.allure.Story;
 import pages.checkoutInfoPage.CheckoutInfoPage;
 import pages.checkoutPage.CheckoutPage;
 import pages.headerPage.HeaderPage;
-import productsPage.ProductsPage;
+import pages.productsPage.ProductsPage;
 import util.SeleniumWebDriver;
 
 public class CheckoutTest extends SeleniumWebDriver{

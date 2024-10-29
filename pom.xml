@@ -119,17 +119,4 @@
 	     </plugins>
 	   </pluginManagement>
 	</build>
-	
-	<reporting>
-        <excludeDefaults>true</excludeDefaults>
-        <plugins>
-			<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-maven -->
-			<plugin>
-                <groupId>io.qameta.allure</groupId>
-                <artifactId>allure-maven</artifactId>
-                <version>${allure-version.version}</version>
-            </plugin>
-        </plugins>
-    </reporting>
-  
 </project>

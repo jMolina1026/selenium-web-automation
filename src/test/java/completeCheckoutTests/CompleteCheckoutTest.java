@@ -1,6 +1,5 @@
 package completeCheckoutTests;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import org.testng.annotations.BeforeMethod;
@@ -13,7 +12,7 @@ import pages.checkoutInfoPage.CheckoutInfoPage;
 import pages.checkoutPage.CheckoutPage;
 import pages.finishPurchasePage.FinishPurchasePage;
 import pages.headerPage.HeaderPage;
-import productsPage.ProductsPage;
+import pages.productsPage.ProductsPage;
 import util.SeleniumWebDriver;
 
 public class CompleteCheckoutTest extends SeleniumWebDriver {
