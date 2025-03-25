@@ -19,6 +19,7 @@
       <class name="checkoutInfoTests.CheckoutInfoTest"/>
       <class name="finishPurchaseTests.FinishPurchaseTest"/>
       <class name="completeCheckoutTests.CompleteCheckoutTest"/>
+      <class name="selenideTests.loginTests.LoginTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
