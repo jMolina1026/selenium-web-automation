@@ -1,4 +1,4 @@
-# Getting Started
+# Selenium Web Automation with Java
 
 ### __PRE-REQUISITES__
 #### Java
