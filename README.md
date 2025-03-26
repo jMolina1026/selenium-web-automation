@@ -74,3 +74,16 @@ Install an IDE for the Selenium Project
   4. https://medium.com/getir/allure-usage-in-maven-projects-1900152e7a11
   5. https://www.programsbuzz.com/article/allure-results-directory-path-setup-allure-java
   6. https://sarkershantonu.github.io/2021/04/29/allure2-annotations/
+ 
+### __COMMAND LINE__
+Headed 
+``` 
+mvn -DuserName={username} -DpassWord={password} -DdriverName=chromeDriver -DheadedOrHeadless=--headless=false -Dgroups=FooterSanity,FooterRegression clean test
+```
+
+Headless
+```
+mvn -DuserName={username} -DpassWord={password} -DdriverName=chromeDriver -DheadedOrHeadless=--headless=new -DuserAgentChromeVersion=130.0.0.0 -Dgroups=FooterSanity,FooterRegression clean test
+
+mvn -DuserName={username} -DpassWord={password} -DdriverName=chromeDriver -DheadedOrHeadless=--headless=new -DuserAgentChromeVersion=130.0.0.0 -Dgroups=loginRegression clean test
+```
